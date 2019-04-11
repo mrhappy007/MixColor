@@ -13,21 +13,21 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var reviewColorView: UIView!
 
     @IBOutlet weak var colorsSegmented: UISegmentedControl!
-    @IBOutlet weak var cameraButton: UIButton!
 
     @IBOutlet weak var tenMauTextField: UITextField!
     @IBOutlet weak var maMauTextfield: UITextField!
 
-    @IBOutlet weak var phaMauButton: UIButton!
-    @IBOutlet weak var lichSuMauDaPhaButton: UIButton!
-    @IBOutlet weak var danhSachPhaMauButton: UIButton!
-
     var mainColor = UIColor.lightGray
 
-    var pageColorViewController: PageColorViewController? {
+    var pageColorViewController: HomePageColorViewController? {
         didSet {
             pageColorViewController?.pageColorDelegate = self
         }
+    }
+
+    @IBAction func switchColorViewAction(_ sender: UISegmentedControl) {
+        switchColorView(index: sender.selectedSegmentIndex)
+        pageColorViewController?.whichToPage(index: sender.selectedSegmentIndex)
     }
 
     override func viewDidLoad() {
@@ -36,14 +36,9 @@ class HomeViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let pageColorViewController = segue.destination as? PageColorViewController {
+        if let pageColorViewController = segue.destination as? HomePageColorViewController {
             self.pageColorViewController = pageColorViewController
         }
-    }
-
-    @IBAction func switchColorViewAction(_ sender: UISegmentedControl) {
-        switchColorView(index: sender.selectedSegmentIndex)
-        pageColorViewController?.whichToPage(index: sender.selectedSegmentIndex)
     }
 
     func switchColorView(index: Int) {

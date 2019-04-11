@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PageColorViewController: UIPageViewController {
+class HomePageColorViewController: UIPageViewController {
 
     weak var pageColorDelegate: PageColorViewControllerDelegate?
 
@@ -62,7 +62,7 @@ class PageColorViewController: UIPageViewController {
     }
 }
 
-extension PageColorViewController: UIPageViewControllerDataSource {
+extension HomePageColorViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 
         guard let currentIndex = pagesViewController.firstIndex(of: viewController) else {
@@ -88,7 +88,7 @@ extension PageColorViewController: UIPageViewControllerDataSource {
     }
 }
 
-extension PageColorViewController: UIPageViewControllerDelegate {
+extension HomePageColorViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         notifyPageViewDelegateChangeIndex()
     }
