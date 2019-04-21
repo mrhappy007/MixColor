@@ -17,26 +17,23 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tenMauTextField: UITextField!
     @IBOutlet weak var maMauTextfield: UITextField!
 
-    var mainColor = UIColor.lightGray
-
-    var pageColorViewController: HomePageColorViewController? {
+    var pageColorViewController: ColorPageViewController? {
         didSet {
             pageColorViewController?.pageColorDelegate = self
         }
     }
 
-    @IBAction func switchColorViewAction(_ sender: UISegmentedControl) {
+    @IBAction func switchColorSegmeted(_ sender: UISegmentedControl) {
         switchColorView(index: sender.selectedSegmentIndex)
         pageColorViewController?.whichToPage(index: sender.selectedSegmentIndex)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let pageColorViewController = segue.destination as? HomePageColorViewController {
+        if let pageColorViewController = segue.destination as? ColorPageViewController {
             self.pageColorViewController = pageColorViewController
         }
     }
@@ -50,16 +47,13 @@ class HomeViewController: UIViewController {
         colorsSegmented.setImage(images[index], forSegmentAt: index)
     }
 
-    func reviewColor(color: UIColor) {
+    func setReviewColor(color: UIColor) {
         reviewColorView.backgroundColor = color
-    }
-
-    func updateUI() {
     }
 }
 
-extension HomeViewController: PageColorViewControllerDelegate {
-    func pageViewController(pageViewController: UIPageViewController, index: Int) {
-        switchColorView(index: index)
+extension HomeViewController: ColorPageViewControllerDelegate {
+    func sliderAction(pageViewController: UIPageViewController, color: UIColor) {
+        setReviewColor(color: color)
     }
 }

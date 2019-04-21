@@ -18,11 +18,11 @@ extension UIColor {
                   alpha: alpha)
     }
 
-    convenience init(cyan: CGFloat, magenta: CGFloat, yellow: CGFloat, black: CGFloat, alpha: CGFloat) {
-        let red = (1 - cyan) * (1 - black)
-        let green = (1 - magenta) * (1 - black)
-        let blue = (1 - yellow) * (1 - black)
-        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    convenience init(cyan: Int, magenta: Int, yellow: Int, black: Int, alpha: CGFloat = 1.0) {
+        let red = (1.0 - Float(cyan) / 100.0) * (1.0 - Float(black) / 100.0) * 255
+        let green = (1.0 - Float(magenta) / 100.0) * (1.0 - Float(black) / 100.0)
+        let blue = (1.0 - Float(yellow) / 100.0) * (1 - Float(black) / 100.0)
+        self.init(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: alpha)
     }
 
     var rgb: (red: Int, green: Int, blue: Int, alpha: CGFloat) {
@@ -38,25 +38,27 @@ extension UIColor {
 
     var cmyk: (cyan: Int, magenta: Int, yellow: Int, black: Int, alpha: CGFloat) {
 
-        func max(_ fistArg: Int, _ secondArg: Int) -> Int {
+        let maxValueCMYK: Float = 100.0
+
+        func max(_ fistArg: Float, _ secondArg: Float) -> Float {
             return fistArg > secondArg ? fistArg : secondArg
         }
 
-        let red = rgb.red
-        let green = rgb.green
-        let blue = rgb.blue
+        let red = Float(rgb.red) / 255.0
+        let green = Float(rgb.green) / 255.0
+        let blue = Float(rgb.blue) / 255.0
 
-        let black = 255 - max(max(red, green), blue)
+        let black = maxValueCMYK - max(max(red, green), blue)
 
-        if black == 255 {
-            return (0, 0, 0, 255, rgb.alpha)
+        if black == maxValueCMYK {
+            return (0, 0, 0, Int(black), rgb.alpha)
         }
 
-        let cyan = (255 - red - black) / (255 - black)
-        let magenta = (255 - green - black) / (255 - black)
-        let yellow = (255 - blue - black) / (255 - black)
+        let cyan = (maxValueCMYK - red - black) / (maxValueCMYK - black)
+        let magenta = (maxValueCMYK - green - black) / (maxValueCMYK - black)
+        let yellow = (maxValueCMYK - blue - black) / (maxValueCMYK - black)
 
-        return (cyan, magenta, yellow, black, rgb.alpha)
+        return (Int(cyan), Int(magenta), Int(yellow), Int(black), rgb.alpha)
     }
 
     var hsv: (hue: Int, saturation: Int, brightness: Int, alpha: CGFloat) {
