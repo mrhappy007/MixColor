@@ -18,10 +18,10 @@ extension UIColor {
                   alpha: alpha)
     }
 
-    convenience init(cyan: Int, magenta: Int, yellow: Int, black: Int, alpha: CGFloat = 1.0) {
-        let red = (1.0 - Float(cyan) / 100.0) * (1.0 - Float(black) / 100.0) * 255
-        let green = (1.0 - Float(magenta) / 100.0) * (1.0 - Float(black) / 100.0)
-        let blue = (1.0 - Float(yellow) / 100.0) * (1 - Float(black) / 100.0)
+    convenience init(cyan: Float, magenta: Float, yellow: Float, black: Float, alpha: CGFloat = 1.0) {
+        let red = (1.0 - cyan) * (1.0 - black)
+        let green = (1.0 - magenta) * (1.0 - black)
+        let blue = (1.0 - yellow) * (1 - black)
         self.init(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: alpha)
     }
 
@@ -37,9 +37,6 @@ extension UIColor {
     }
 
     var cmyk: (cyan: Int, magenta: Int, yellow: Int, black: Int, alpha: CGFloat) {
-
-        let maxValueCMYK: Float = 100.0
-
         func max(_ fistArg: Float, _ secondArg: Float) -> Float {
             return fistArg > secondArg ? fistArg : secondArg
         }
@@ -48,17 +45,17 @@ extension UIColor {
         let green = Float(rgb.green) / 255.0
         let blue = Float(rgb.blue) / 255.0
 
-        let black = maxValueCMYK - max(max(red, green), blue)
+        let black = 1 - max(max(red, green), blue)
 
-        if black == maxValueCMYK {
-            return (0, 0, 0, Int(black), rgb.alpha)
+        if black == 1 {
+            return (0, 0, 0, 100, rgb.alpha)
         }
 
-        let cyan = (maxValueCMYK - red - black) / (maxValueCMYK - black)
-        let magenta = (maxValueCMYK - green - black) / (maxValueCMYK - black)
-        let yellow = (maxValueCMYK - blue - black) / (maxValueCMYK - black)
+        let cyan = (1 - red - black) / (1 - black)
+        let magenta = (1 - green - black) / (1 - black)
+        let yellow = (1 - blue - black) / (1 - black)
 
-        return (Int(cyan), Int(magenta), Int(yellow), Int(black), rgb.alpha)
+        return (Int(cyan * 100), Int(magenta * 100), Int(yellow * 100), Int(black * 100), rgb.alpha)
     }
 
     var hsv: (hue: Int, saturation: Int, brightness: Int, alpha: CGFloat) {
@@ -67,6 +64,18 @@ extension UIColor {
 
         getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
 
-        return (Int(hue), Int(saturation), Int(brightness), alpha)
+        if saturation > 1 {
+            saturation = 1
+        } else if saturation < 0 {
+            saturation = 0
+        }
+
+        if brightness > 1 {
+            brightness = 1
+        } else if brightness < 0 {
+            brightness = 0
+        }
+
+        return (Int(hue * 359), Int(saturation * 100), Int(brightness * 100), alpha)
     }
 }

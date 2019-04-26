@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
 
     @IBAction func switchColorSegmeted(_ sender: UISegmentedControl) {
         switchColorView(index: sender.selectedSegmentIndex)
-        pageColorViewController?.whichToPage(index: sender.selectedSegmentIndex)
+        pageColorViewController?.whichToPage(index: sender.selectedSegmentIndex, updateColor: reviewColorView.backgroundColor ?? UIColor(hex: 0x009354))
     }
 
     override func viewDidLoad() {

@@ -307,7 +307,10 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <action selector="redTextFieldChange:" destination="nOk-0k-3vG" eventType="editingDidEnd" id="I2q-Tu-rbP"/>
+                                        </connections>
                                     </textField>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="tV2-KP-ajL">
                                         <rect key="frame" x="25" y="69.5" width="259" height="31"/>
@@ -320,13 +323,19 @@
                                         <rect key="frame" x="298" y="69.5" width="75" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <action selector="blueTextFieldChange:" destination="nOk-0k-3vG" eventType="editingDidEnd" id="tYh-iH-7vT"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tYb-fk-iRw">
                                         <rect key="frame" x="298" y="32.5" width="75" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <action selector="greenTextFieldChange:" destination="nOk-0k-3vG" eventType="editingDidEnd" id="2ub-yX-DS3"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9I-zb-UHb">
                                         <rect key="frame" x="0.0" y="0.0" width="11" height="21"/>
@@ -373,12 +382,12 @@
                         <viewLayoutGuide key="safeArea" id="4hS-ZI-dTn"/>
                     </view>
                     <connections>
-                        <outlet property="blueLabel" destination="ZmJ-gg-pCp" id="UbJ-Aj-o2A"/>
                         <outlet property="blueSlider" destination="tV2-KP-ajL" id="SV3-sq-MPU"/>
-                        <outlet property="greenLabel" destination="tYb-fk-iRw" id="ETY-VS-K4z"/>
+                        <outlet property="blueTextField" destination="ZmJ-gg-pCp" id="UbJ-Aj-o2A"/>
                         <outlet property="greenSlider" destination="8O7-ES-vaL" id="elC-g3-Tw8"/>
-                        <outlet property="redLabel" destination="Lvv-dk-LoB" id="6T5-tw-Xv3"/>
+                        <outlet property="greenTextField" destination="tYb-fk-iRw" id="ETY-VS-K4z"/>
                         <outlet property="redSlider" destination="dEM-TL-g5G" id="Nss-az-Tsx"/>
+                        <outlet property="redTextField" destination="Lvv-dk-LoB" id="6T5-tw-Xv3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k3v-yu-lKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -402,20 +411,32 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="yellowTextFieldChange:" destination="S2j-Vo-pzj" eventType="editingDidEnd" id="yk4-vl-Ilz"/>
+                                        </connections>
                                     </textField>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="9hf-8x-hxy">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="9hf-8x-hxy">
                                         <rect key="frame" x="29" y="32.5" width="255" height="31"/>
                                         <color key="tintColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="sliderAction:" destination="S2j-Vo-pzj" eventType="valueChanged" id="mpD-Yg-QEI"/>
+                                        </connections>
                                     </slider>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xVp-vD-WHO">
                                         <rect key="frame" x="298" y="32.5" width="75" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="magentaTextFieldChange:" destination="S2j-Vo-pzj" eventType="editingDidEnd" id="JAU-0e-Lhs"/>
+                                        </connections>
                                     </textField>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="BhU-mv-5FQ">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="75" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="BhU-mv-5FQ">
                                         <rect key="frame" x="26" y="-4.5" width="258" height="31"/>
                                         <color key="tintColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="sliderAction:" destination="S2j-Vo-pzj" eventType="valueChanged" id="e9R-fG-Mxe"/>
+                                        </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Y" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6n-D0-wOQ">
                                         <rect key="frame" x="0.0" y="74" width="11" height="21"/>
@@ -434,10 +455,16 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="blackTextFieldChange:" destination="S2j-Vo-pzj" eventType="editingDidEnd" id="d6m-5S-uBU"/>
+                                        </connections>
                                     </textField>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CUk-CS-axS">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CUk-CS-axS">
                                         <rect key="frame" x="25" y="106.5" width="259" height="31"/>
                                         <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="sliderAction:" destination="S2j-Vo-pzj" eventType="valueChanged" id="7OQ-KD-Ycr"/>
+                                        </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Zz-Tr-fRK">
                                         <rect key="frame" x="0.0" y="37" width="15" height="21"/>
@@ -454,10 +481,16 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="cyanTextFieldChange:" destination="S2j-Vo-pzj" eventType="editingDidEnd" id="p6E-Ns-xlN"/>
+                                        </connections>
                                     </textField>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="OIq-4k-iDf">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="OIq-4k-iDf">
                                         <rect key="frame" x="25" y="69.5" width="259" height="31"/>
                                         <color key="tintColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="sliderAction:" destination="S2j-Vo-pzj" eventType="valueChanged" id="Blj-ub-fhO"/>
+                                        </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="K" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMU-at-AX1">
                                         <rect key="frame" x="0.0" y="111" width="11" height="21"/>
@@ -511,6 +544,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FGu-HB-A2O"/>
                     </view>
+                    <connections>
+                        <outlet property="blackSlider" destination="CUk-CS-axS" id="ah9-0X-Wy3"/>
+                        <outlet property="blackTextField" destination="MfZ-wR-l6A" id="PL3-6C-B92"/>
+                        <outlet property="cyanSlider" destination="BhU-mv-5FQ" id="6vt-e0-RUf"/>
+                        <outlet property="cyanTextField" destination="8J3-y4-TKm" id="mZx-PP-n1C"/>
+                        <outlet property="magentaSlider" destination="9hf-8x-hxy" id="XVa-Vr-Wzu"/>
+                        <outlet property="magentaTextField" destination="xVp-vD-WHO" id="hTg-Vo-LwF"/>
+                        <outlet property="yellowSlider" destination="OIq-4k-iDf" id="J3Y-Hf-D4i"/>
+                        <outlet property="yellowTextField" destination="chQ-pY-3fC" id="SSh-az-qX2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OW7-Tw-iIF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -527,12 +570,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9B-ZQ-nCy">
                                 <rect key="frame" x="1" y="28" width="373" height="160"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="iai-kV-obv">
-                                        <rect key="frame" x="27" y="32.5" width="256" height="31"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="75" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="iai-kV-obv">
+                                        <rect key="frame" x="25" y="32.5" width="258" height="31"/>
                                         <color key="tintColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="sliderAction:" destination="VYQ-5K-Ls2" eventType="valueChanged" id="luC-Tp-Z9p"/>
+                                        </connections>
                                     </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCT-V4-hTu">
-                                        <rect key="frame" x="0.0" y="0.0" width="11" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCT-V4-hTu">
+                                        <rect key="frame" x="0.0" y="0.0" width="13" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -544,17 +590,23 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="359" translatesAutoresizingMaskIntoConstraints="NO" id="1wt-Fx-OJd">
-                                        <rect key="frame" x="25" y="-4.5" width="258" height="31"/>
+                                        <rect key="frame" x="27" y="-4.5" width="256" height="31"/>
                                         <color key="tintColor" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="sliderAction:" destination="VYQ-5K-Ls2" eventType="valueChanged" id="1iJ-7a-Rw0"/>
+                                        </connections>
                                     </slider>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="89E-Xz-gR8">
                                         <rect key="frame" x="297" y="32.5" width="75" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="saturationTextFieldChange:" destination="VYQ-5K-Ls2" eventType="editingDidEnd" id="3o2-mM-oV2"/>
+                                        </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aho-z6-uQ0">
-                                        <rect key="frame" x="0.0" y="37" width="13" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aho-z6-uQ0">
+                                        <rect key="frame" x="0.0" y="37" width="11" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -567,16 +619,25 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="hueTextFieldChange:" destination="VYQ-5K-Ls2" eventType="editingDidEnd" id="WiT-ff-dDk"/>
+                                        </connections>
                                     </textField>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="wz9-XU-8Ro">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="wz9-XU-8Ro">
                                         <rect key="frame" x="26" y="69.5" width="257" height="31"/>
                                         <color key="tintColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="sliderAction:" destination="VYQ-5K-Ls2" eventType="valueChanged" id="Dt4-SM-to7"/>
+                                        </connections>
                                     </slider>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="50" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lT0-hR-Obh">
                                         <rect key="frame" x="297" y="69.5" width="75" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="brightnessTextFieldChange:" destination="VYQ-5K-Ls2" eventType="editingDidEnd" id="2nM-82-xvl"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -616,6 +677,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="25E-NP-fNM"/>
                     </view>
+                    <connections>
+                        <outlet property="brightnessSlider" destination="wz9-XU-8Ro" id="yS7-tK-KE4"/>
+                        <outlet property="brightnessTextField" destination="lT0-hR-Obh" id="LOm-TF-LcN"/>
+                        <outlet property="hueSlider" destination="1wt-Fx-OJd" id="M0p-Nc-dt9"/>
+                        <outlet property="hueTextField" destination="lxu-Qc-FjU" id="kl3-bz-8JH"/>
+                        <outlet property="saturationSlider" destination="iai-kV-obv" id="AJg-og-21U"/>
+                        <outlet property="saturationTextField" destination="89E-Xz-gR8" id="ojZ-x9-UMz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9cH-1u-FcO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -852,7 +921,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rH5-4a-fae" customClass="CustomView" customModule="Pha_Mau" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="261"/>
-                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.32941176470588235" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="261" id="Xsa-un-4cF"/>
                                 </constraints>

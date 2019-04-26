@@ -11,13 +11,7 @@ import UIKit
 class ColorPageViewController: UIPageViewController {
 
     weak var pageColorDelegate: ColorPageViewControllerDelegate?
-    var mainColor = UIColor()
-
-    var rgbPage: RGBPage? {
-        didSet {
-            rgbPage?.rgbPageDelegate = self
-        }
-    }
+    var mainColor = UIColor(hex: 0x009354)
 
     lazy var pagesViewController: [UIViewController] = {
         return [
@@ -34,13 +28,30 @@ class ColorPageViewController: UIPageViewController {
             return
         }
         whichToPage(pageView: initialPage)
+
+        guard let rgbPage = pagesViewController[0] as? RGBPage else {
+            return
+        }
+        rgbPage.rgbPageDelegate = self
+
+        guard let cmykPage = pagesViewController[1] as? CMYKPage else {
+            return
+        }
+        cmykPage.cmykPageDelegate = self
+
+        guard let hsvPage = pagesViewController[2] as? HSVPage else {
+            return
+        }
+        hsvPage.hsvPageDelegate = self
     }
 
     private func orderPageView(indentifier: String) -> UIViewController {
         return storyboard?.instantiateViewController(withIdentifier: indentifier) ?? UIViewController()
     }
 
-    func whichToPage(index newIndex: Int) {
+    func whichToPage(index newIndex: Int, updateColor color: UIColor) {
+        mainColor = color
+
         guard let fistPage = viewControllers?.first,
             let currentIndex = pagesViewController.firstIndex(of: fistPage) else {
                 return
@@ -51,21 +62,42 @@ class ColorPageViewController: UIPageViewController {
         whichToPage(pageView: nextPage, direction: direction)
     }
 
-    func whichToPage(pageView: UIViewController, direction: UIPageViewController.NavigationDirection = .forward) {
+    private func whichToPage(pageView: UIViewController, direction: UIPageViewController.NavigationDirection = .forward) {
         setViewControllers([pageView], direction: direction, animated: true)
     }
+
 }
 
 extension ColorPageViewController: RGBPageDelegate {
-    func rgbSliderAction(rgbPage: UIViewController, rgbValue: (red: Int, green: Int, blue: Int)) {
+    func sliderAction(rgbPage: UIViewController, rgbValue: (red: Int, green: Int, blue: Int)) {
 
-        let red = CGFloat(rgbValue.red)
-        let green = CGFloat(rgbValue.green)
-        let blue = CGFloat(rgbValue.blue)
+        let red = CGFloat(rgbValue.red) / 255.0
+        let green = CGFloat(rgbValue.green) / 255.0
+        let blue = CGFloat(rgbValue.blue) / 255.0
 
         pageColorDelegate?.sliderAction(pageViewController: self, color: UIColor(displayP3Red: red, green: green, blue: blue, alpha: 1.0))
+    }
+}
 
-        print("---------")
+extension ColorPageViewController: CMYKPageDelegate {
+    func sliderAction(cmykPage: UIViewController, cmykValue: (cyan: Int, magenta: Int, yellow: Int, black: Int)) {
+
+        let cyan = Float(cmykValue.cyan) / 100.0
+        let magenta = Float(cmykValue.magenta) / 100.0
+        let yellow = Float(cmykValue.yellow) / 100.0
+        let black = Float(cmykValue.black) / 100.0
+
+        pageColorDelegate?.sliderAction(pageViewController: self, color: UIColor( cyan: cyan, magenta: magenta, yellow: yellow, black: black))
+    }
+}
+
+extension ColorPageViewController: HSVPageDelegate {
+    func sliderAction(hsvPage: UIViewController, hsvValue: (hue: Int, saturation: Int, brightness: Int)) {
+        let hue = CGFloat(hsvValue.hue) / 259.0
+        let saturation = CGFloat(hsvValue.saturation) / 100.0
+        let brightness = CGFloat(hsvValue.brightness) / 100.0
+
+        pageColorDelegate?.sliderAction(pageViewController: self, color: UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0))
     }
 }
 

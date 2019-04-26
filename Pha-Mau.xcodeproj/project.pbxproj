@@ -10,6 +10,7 @@
 		411095CF226AF3AA00E5DCA7 /* ColorSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411095CD226AF3AA00E5DCA7 /* ColorSummaryTableViewCell.swift */; };
 		411095D0226AF3AA00E5DCA7 /* ColorSummaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 411095CE226AF3AA00E5DCA7 /* ColorSummaryTableViewCell.xib */; };
 		411095DF226B3FED00E5DCA7 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411095DE226B3FED00E5DCA7 /* ColorManager.swift */; };
+		4138175F2270BFB600F97E6B /* Hemau.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138175E2270BFB600F97E6B /* Hemau.swift */; };
 		413D057C2243D5A900C0485F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413D057B2243D5A900C0485F /* AppDelegate.swift */; };
 		413D057E2243D5A900C0485F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413D057D2243D5A900C0485F /* HomeViewController.swift */; };
 		413D05812243D5A900C0485F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 413D057F2243D5A900C0485F /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 		411095CD226AF3AA00E5DCA7 /* ColorSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		411095CE226AF3AA00E5DCA7 /* ColorSummaryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSummaryTableViewCell.xib; sourceTree = "<group>"; };
 		411095DE226B3FED00E5DCA7 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		4138175E2270BFB600F97E6B /* Hemau.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hemau.swift; sourceTree = "<group>"; };
 		413D05782243D5A900C0485F /* Pha-Mau.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pha-Mau.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		413D057B2243D5A900C0485F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		413D057D2243D5A900C0485F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,14 @@
 				41C23C212252666900B6C303 /* ColorPageViewController.swift */,
 			);
 			path = "Color page";
+			sourceTree = "<group>";
+		};
+		4138175D2270BFAB00F97E6B /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				4138175E2270BFB600F97E6B /* Hemau.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		413D056F2243D5A900C0485F = {
@@ -172,6 +182,7 @@
 		41C23BE3224D274B00B6C303 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4138175D2270BFAB00F97E6B /* Enum */,
 				41C23C16225111E300B6C303 /* ColorPage */,
 			);
 			path = Common;
@@ -344,6 +355,7 @@
 				41C23C132250951200B6C303 /* HSVPage.swift in Sources */,
 				411095CF226AF3AA00E5DCA7 /* ColorSummaryTableViewCell.swift in Sources */,
 				416E7B23225E55500046F3BF /* CreateNewColorViewController.swift in Sources */,
+				4138175F2270BFB600F97E6B /* Hemau.swift in Sources */,
 				411095DF226B3FED00E5DCA7 /* ColorManager.swift in Sources */,
 				413D057C2243D5A900C0485F /* AppDelegate.swift in Sources */,
 				416E7B28225F7EAC0046F3BF /* CustomView.swift in Sources */,
