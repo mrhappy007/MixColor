@@ -63,9 +63,38 @@ class ColorPageViewController: UIPageViewController {
     }
 
     private func whichToPage(pageView: UIViewController, direction: UIPageViewController.NavigationDirection = .forward) {
+
         setViewControllers([pageView], direction: direction, animated: true)
+
+        setupUISubPage(pageView: pageView)
     }
 
+    func setupUISubPage(pageView: UIViewController) {
+        if let rgbPage = pageView as? RGBPage {
+            rgbPage.setupUI(color: mainColor)
+            return
+        }
+
+        if let cmykPage = pageView as? CMYKPage {
+            cmykPage.setupUI(color: mainColor)
+            return
+        }
+
+        if let hsvPage = pageView as? HSVPage {
+            hsvPage.setupUI(color: mainColor)
+            return
+        }
+    }
+
+    func mainColorUpdate(color: UIColor) {
+        mainColor = color
+
+        guard let fistPage = viewControllers?.first,
+            let currentIndex = pagesViewController.firstIndex(of: fistPage) else {
+                return
+        }
+        setupUISubPage(pageView: pagesViewController[currentIndex])
+    }
 }
 
 extension ColorPageViewController: RGBPageDelegate {
@@ -75,7 +104,9 @@ extension ColorPageViewController: RGBPageDelegate {
         let green = CGFloat(rgbValue.green) / 255.0
         let blue = CGFloat(rgbValue.blue) / 255.0
 
-        pageColorDelegate?.sliderAction(pageViewController: self, color: UIColor(displayP3Red: red, green: green, blue: blue, alpha: 1.0))
+        let color = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+
+        pageColorDelegate?.sliderAction(pageViewController: self, color: color)
     }
 }
 
@@ -93,7 +124,7 @@ extension ColorPageViewController: CMYKPageDelegate {
 
 extension ColorPageViewController: HSVPageDelegate {
     func sliderAction(hsvPage: UIViewController, hsvValue: (hue: Int, saturation: Int, brightness: Int)) {
-        let hue = CGFloat(hsvValue.hue) / 259.0
+        let hue = CGFloat(hsvValue.hue) / 359.0
         let saturation = CGFloat(hsvValue.saturation) / 100.0
         let brightness = CGFloat(hsvValue.brightness) / 100.0
 

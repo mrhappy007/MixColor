@@ -23,13 +23,12 @@ class RGBPage: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI(color: mainColor)
     }
 
     func setupUI(color: UIColor) {
-        let redValue = color.rgb.red
-        let greenValue = color.rgb.green
-        let blueValue = color.rgb.blue
+        let redValue = Int(color.rgb.red * 255)
+        let greenValue = Int(color.rgb.green * 255)
+        let blueValue = Int(color.rgb.blue * 255)
 
         redTextField.text = String(redValue)
         greenTextField.text = String(greenValue)

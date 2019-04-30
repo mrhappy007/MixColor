@@ -17,25 +17,54 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tenMauTextField: UITextField!
     @IBOutlet weak var maMauTextfield: UITextField!
 
+    var mainColor = UIColor(hex: "005493")
+
     var pageColorViewController: ColorPageViewController? {
         didSet {
             pageColorViewController?.pageColorDelegate = self
         }
     }
 
-    @IBAction func switchColorSegmeted(_ sender: UISegmentedControl) {
-        switchColorView(index: sender.selectedSegmentIndex)
-        pageColorViewController?.whichToPage(index: sender.selectedSegmentIndex, updateColor: reviewColorView.backgroundColor ?? UIColor(hex: 0x009354))
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateUI()
+    }
+
+    func updateUI() {
+        reviewColorView.backgroundColor = mainColor
+        maMauTextfield.text = mainColor.hex
+        pageColorViewController?.mainColorUpdate(color: mainColor)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let pageColorViewController = segue.destination as? ColorPageViewController {
             self.pageColorViewController = pageColorViewController
         }
+    }
+
+    @IBAction func maMauDidChange(_ sender: UITextField) {
+        guard let hexCode = sender.text else {
+            return
+        }
+
+        let exception: UInt32 = 16_777_216
+
+        let canner = Scanner(string: hexCode)
+        var value: UInt32 = exception
+        canner.scanHexInt32(&value)
+
+        if value >= exception {
+            sender.text = reviewColorView.backgroundColor?.hex
+            return
+        }
+
+        mainColor = UIColor(hex: Int(value))
+        updateUI()
+    }
+
+    @IBAction func switchColorSegmeted(_ sender: UISegmentedControl) {
+        switchColorView(index: sender.selectedSegmentIndex)
+        pageColorViewController?.whichToPage(index: sender.selectedSegmentIndex, updateColor: reviewColorView.backgroundColor ?? mainColor)
     }
 
     func switchColorView(index: Int) {
@@ -49,6 +78,7 @@ class HomeViewController: UIViewController {
 
     func setReviewColor(color: UIColor) {
         reviewColorView.backgroundColor = color
+        maMauTextfield.text = color.hex
     }
 }
 

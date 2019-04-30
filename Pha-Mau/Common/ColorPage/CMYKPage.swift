@@ -21,18 +21,16 @@ class CMYKPage: UIViewController {
     @IBOutlet weak var blackTextField: UITextField!
 
     weak var cmykPageDelegate: CMYKPageDelegate?
-    var mainColor = UIColor(hex: 0x005493)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI(color: mainColor)
     }
 
     func setupUI(color: UIColor) {
-        let cyan = color.cmyk.cyan
-        let magenta = color.cmyk.magenta
-        let yellow = color.cmyk.yellow
-        let black = color.cmyk.black
+        let cyan = Int(color.cmyk.cyan * 100)
+        let magenta = Int(color.cmyk.magenta * 100)
+        let yellow = Int(color.cmyk.yellow * 100)
+        let black = Int(color.cmyk.black * 100)
 
         cyanTextField.text = String(cyan)
         magentaTextField.text = String(magenta)

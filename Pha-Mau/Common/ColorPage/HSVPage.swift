@@ -19,17 +19,15 @@ class HSVPage: UIViewController {
     @IBOutlet weak var brightnessTextField: UITextField!
 
     weak var hsvPageDelegate: HSVPageDelegate?
-    var mainColor = UIColor(hex: 0x005493)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI(color: mainColor)
     }
 
     func setupUI(color: UIColor) {
-        let hue = color.hsv.hue
-        let saturation = color.hsv.saturation
-        let brightness = color.hsv.brightness
+        let hue = Int(color.hsv.hue * 359)
+        let saturation = Int(color.hsv.saturation * 100)
+        let brightness = Int(color.hsv.brightness * 100)
 
         hueTextField.text = String(hue)
         saturationTextField.text = String(saturation)

@@ -12,10 +12,17 @@ import UIKit
 extension UIColor {
 
     convenience init(hex: Int, alpha: CGFloat = 1.0) {
-        self.init(red: CGFloat((hex >> 16) & 0xFF),
-                  green: CGFloat((hex >> 8) & 0xFF),
-                  blue: CGFloat((hex >> 0) & 0xFF),
+        self.init(red: CGFloat((hex >> 16) & 0xFF) / 255,
+                  green: CGFloat((hex >> 8) & 0xFF) / 255,
+                  blue: CGFloat((hex >> 0) & 0xFF) / 255,
                   alpha: alpha)
+    }
+
+    convenience init(hex: String) {
+        let canner = Scanner(string: hex)
+        var value: UInt32 = 20651
+        canner.scanHexInt32(&value)
+        self.init(hex: Int(value))
     }
 
     convenience init(cyan: Float, magenta: Float, yellow: Float, black: Float, alpha: CGFloat = 1.0) {
@@ -25,25 +32,25 @@ extension UIColor {
         self.init(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: alpha)
     }
 
-    var rgb: (red: Int, green: Int, blue: Int, alpha: CGFloat) {
+    var rgb: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         guard let components = self.cgColor.components else {
-            return (255, 255, 255, 1)
+            return (1, 1, 1, 1)
         }
-        return (Int(components[0]), Int(components[1]), Int(components[2]), components[3])
+        return (components[0], components[1], components[2], components[3])
     }
 
     var hex: String {
-        return String(format: "%02X%02X%02X", rgb.red, rgb.green, rgb.blue)
+        return String(format: "%02X%02X%02X", Int(rgb.red * 255), Int(rgb.green * 255), Int(rgb.blue * 255))
     }
 
-    var cmyk: (cyan: Int, magenta: Int, yellow: Int, black: Int, alpha: CGFloat) {
-        func max(_ fistArg: Float, _ secondArg: Float) -> Float {
+    var cmyk: (cyan: CGFloat, magenta: CGFloat, yellow: CGFloat, black: CGFloat, alpha: CGFloat) {
+        func max(_ fistArg: CGFloat, _ secondArg: CGFloat) -> CGFloat {
             return fistArg > secondArg ? fistArg : secondArg
         }
 
-        let red = Float(rgb.red) / 255.0
-        let green = Float(rgb.green) / 255.0
-        let blue = Float(rgb.blue) / 255.0
+        let red = rgb.red
+        let green = rgb.green
+        let blue = rgb.blue
 
         let black = 1 - max(max(red, green), blue)
 
@@ -55,10 +62,10 @@ extension UIColor {
         let magenta = (1 - green - black) / (1 - black)
         let yellow = (1 - blue - black) / (1 - black)
 
-        return (Int(cyan * 100), Int(magenta * 100), Int(yellow * 100), Int(black * 100), rgb.alpha)
+        return (cyan, magenta, yellow, black, rgb.alpha)
     }
 
-    var hsv: (hue: Int, saturation: Int, brightness: Int, alpha: CGFloat) {
+    var hsv: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
         var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0
         var alpha: CGFloat = 0.0
 
@@ -75,7 +82,6 @@ extension UIColor {
         } else if brightness < 0 {
             brightness = 0
         }
-
-        return (Int(hue * 359), Int(saturation * 100), Int(brightness * 100), alpha)
+        return (hue, saturation, brightness, alpha)
     }
 }
