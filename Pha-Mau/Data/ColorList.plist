@@ -12,15 +12,20 @@
 		<string>magenta</string>
 		<string>ff00ff</string>
 	</array>
-    <array>
-        <string>19900101000002</string>
-        <string>yellow</string>
-        <string>ffff00</string>
-    </array>
-    <array>
-        <string>19900101000003</string>
-        <string>black</string>
-        <string>000000</string>
-    </array>
+	<array>
+		<string>19900101000002</string>
+		<string>yellow</string>
+		<string>ffff00</string>
+	</array>
+	<array>
+		<string>19900101000003</string>
+		<string>black</string>
+		<string>000000</string>
+	</array>
+	<array>
+		<string>19900101000003</string>
+		<string>white</string>
+		<string>ffffff</string>
+	</array>
 </array>
 </plist>

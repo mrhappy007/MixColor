@@ -11,13 +11,13 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var reviewColorView: UIView!
-
     @IBOutlet weak var colorsSegmented: UISegmentedControl!
+    @IBOutlet weak var colorNameTextField: UITextField!
+    @IBOutlet weak var colorCodeTextfield: UITextField!
 
-    @IBOutlet weak var tenMauTextField: UITextField!
-    @IBOutlet weak var maMauTextfield: UITextField!
+    var colorManager = ColorManager.context
 
-    var mainColor = UIColor(hex: "005493")
+    var mainColor = ColorModel()
 
     var pageColorViewController: ColorPageViewController? {
         didSet {
@@ -27,19 +27,25 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        colorManager.loadContext()
+        pageColorViewController?.mainColorUpdate(color: UIColor(hex: mainColor.hexCode))
+        colorNameTextField.text = mainColor.name
         updateUI()
     }
 
-    func updateUI() {
-        reviewColorView.backgroundColor = mainColor
-        maMauTextfield.text = mainColor.hex
-        pageColorViewController?.mainColorUpdate(color: mainColor)
+    private func updateUI() {
+        reviewColorView.backgroundColor = UIColor(hex: mainColor.hexCode)
+        colorCodeTextfield.text = mainColor.hexCode
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let pageColorViewController = segue.destination as? ColorPageViewController {
             self.pageColorViewController = pageColorViewController
         }
+    }
+
+    @IBAction func colorNameDidChange(_ sender: UITextField) {
+        mainColor.name = sender.text ?? mainColor.name
     }
 
     @IBAction func maMauDidChange(_ sender: UITextField) {
@@ -58,16 +64,32 @@ class HomeViewController: UIViewController {
             return
         }
 
-        mainColor = UIColor(hex: Int(value))
+        mainColor.hexCode = hexCode
         updateUI()
     }
 
     @IBAction func switchColorSegmeted(_ sender: UISegmentedControl) {
         switchColorView(index: sender.selectedSegmentIndex)
-        pageColorViewController?.whichToPage(index: sender.selectedSegmentIndex, updateColor: reviewColorView.backgroundColor ?? mainColor)
+        pageColorViewController?.whichToPage(index: sender.selectedSegmentIndex, updateColor: UIColor(hex: mainColor.hexCode))
     }
 
-    func switchColorView(index: Int) {
+    @IBAction func saveDidSelect(_ sender: UIBarButtonItem) {
+        colorManager.appentColor(colorModel: mainColor)
+        guard let colorListView = (storyboard?.instantiateViewController(withIdentifier: "ColorListView") as? ColorListViewController) else {
+            return
+        }
+        self.navigationController?.pushViewController(colorListView, animated: true)
+    }
+
+    @IBAction func mixColor(_ sender: UIButton) {
+        guard let chooseColorView = (storyboard?.instantiateViewController(withIdentifier: "ChooseColorsView") as? ChooseColorsViewController) else {
+            return
+        }
+        chooseColorView.colorListForMixer.append(mainColor)
+        self.navigationController?.pushViewController(chooseColorView, animated: true)
+    }
+
+    private func switchColorView(index: Int) {
         let images = [#imageLiteral(resourceName: "RGB"), #imageLiteral(resourceName: "CMYK"), #imageLiteral(resourceName: "HSV")]
         let imagesBW = [#imageLiteral(resourceName: "RGBB&W"), #imageLiteral(resourceName: "CMYKB&W"), #imageLiteral(resourceName: "HSVB&W")]
         for index in 0...2 {
@@ -75,15 +97,11 @@ class HomeViewController: UIViewController {
         }
         colorsSegmented.setImage(images[index], forSegmentAt: index)
     }
-
-    func setReviewColor(color: UIColor) {
-        reviewColorView.backgroundColor = color
-        maMauTextfield.text = color.hex
-    }
 }
 
 extension HomeViewController: ColorPageViewControllerDelegate {
-    func sliderAction(pageViewController: UIPageViewController, color: UIColor) {
-        setReviewColor(color: color)
+    func sliderAction(pageViewController: UIPageViewController, colorHexCode: String) {
+        mainColor.hexCode = colorHexCode
+        updateUI()
     }
 }

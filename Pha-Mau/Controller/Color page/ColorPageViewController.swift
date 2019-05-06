@@ -106,7 +106,7 @@ extension ColorPageViewController: RGBPageDelegate {
 
         let color = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
 
-        pageColorDelegate?.sliderAction(pageViewController: self, color: color)
+        pageColorDelegate?.sliderAction(pageViewController: self, colorHexCode: color.hex)
     }
 }
 
@@ -118,7 +118,7 @@ extension ColorPageViewController: CMYKPageDelegate {
         let yellow = Float(cmykValue.yellow) / 100.0
         let black = Float(cmykValue.black) / 100.0
 
-        pageColorDelegate?.sliderAction(pageViewController: self, color: UIColor( cyan: cyan, magenta: magenta, yellow: yellow, black: black))
+        pageColorDelegate?.sliderAction(pageViewController: self, colorHexCode: UIColor( cyan: cyan, magenta: magenta, yellow: yellow, black: black).hex)
     }
 }
 
@@ -128,10 +128,10 @@ extension ColorPageViewController: HSVPageDelegate {
         let saturation = CGFloat(hsvValue.saturation) / 100.0
         let brightness = CGFloat(hsvValue.brightness) / 100.0
 
-        pageColorDelegate?.sliderAction(pageViewController: self, color: UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0))
+        pageColorDelegate?.sliderAction(pageViewController: self, colorHexCode: UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0).hex)
     }
 }
 
 protocol ColorPageViewControllerDelegate: class {
-    func sliderAction(pageViewController: UIPageViewController, color: UIColor)
+    func sliderAction(pageViewController: UIPageViewController, colorHexCode: String)
 }

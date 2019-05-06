@@ -1,0 +1,68 @@
+//
+//  ChooseColorsViewController.swift
+//  Pha-Mau
+//
+//  Created by Hieu Nghia on 5/3/19.
+//  Copyright © 2019 Hieu Nghia. All rights reserved.
+//
+
+import UIKit
+
+class ChooseColorsViewController: UIViewController {
+
+    @IBOutlet weak var chooseColorsTableView: UITableView!
+
+    var colorListForMixer = [ColorModel]()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        chooseColorsTableView.rowHeight = UITableView.automaticDimension
+
+        let colorCell = UINib(nibName: "ColorSummaryCell", bundle: nil)
+        chooseColorsTableView.register(colorCell, forCellReuseIdentifier: "ColorSummaryCell")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        chooseColorsTableView.reloadData()
+    }
+}
+
+extension ChooseColorsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ColorManager.context.colorList.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ColorSummaryCell", for: indexPath) as?  ColorSummaryCell else {
+            return UITableViewCell(style: .default, reuseIdentifier: "Cell")
+        }
+        let colorModel = ColorManager.context.colorList[indexPath.item]
+        cell.updateContextChooseColor(colorModel: colorModel)
+        cell.cellDelegate = self
+
+        return cell
+    }
+}
+
+extension ChooseColorsViewController: ColorSummaryCellDelegate {
+    func switchDidChange(colorSummaryCell: UITableViewCell, colorId: String, colorSwitchStatus: Bool) {
+        let colorList = ColorManager.context.colorList
+        guard let indexInColorList = colorList.firstIndex(where: { $0.idColor == colorId }) else {
+            return
+        }
+        switch colorSwitchStatus {
+        case true:
+            colorListForMixer.append(colorList[indexInColorList])
+        case false:
+            guard let indexInColorListForMixer = colorListForMixer.firstIndex(where: { $0.idColor == colorId }) else {
+                return
+            }
+            colorListForMixer.remove(at: indexInColorListForMixer)
+        }
+
+        print(colorListForMixer)
+    }
+}

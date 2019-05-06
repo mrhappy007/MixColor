@@ -55,7 +55,7 @@ extension UIColor {
         let black = 1 - max(max(red, green), blue)
 
         if black == 1 {
-            return (0, 0, 0, 100, rgb.alpha)
+            return (0, 0, 0, 1, rgb.alpha)
         }
 
         let cyan = (1 - red - black) / (1 - black)
