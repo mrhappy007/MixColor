@@ -18,6 +18,7 @@ class ColorListViewController: UIViewController {
         super.viewDidLoad()
 
         colorListTableView.rowHeight = UITableView.automaticDimension
+
         let colorCell = UINib(nibName: "ColorSummaryCell", bundle: nil)
         colorListTableView.register(colorCell, forCellReuseIdentifier: "ColorSummaryCell")
     }

@@ -19,7 +19,7 @@ class CustomView: UIView {
                 self.layer.masksToBounds = false
                 self.layer.shadowColor = UIColor.darkGray.cgColor
                 self.layer.shadowOpacity = 0.5
-                self.layer.shadowOffset = CGSize(width: 0, height: 1)
+                self.layer.shadowOffset = CGSize(width: 0, height: 0.1)
                 self.layer.shadowRadius = 0
                 self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
                 self.layer.shouldRasterize = true

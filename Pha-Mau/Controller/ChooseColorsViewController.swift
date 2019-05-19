@@ -12,10 +12,15 @@ class ChooseColorsViewController: UIViewController {
 
     @IBOutlet weak var chooseColorsTableView: UITableView!
 
+    var mainColor = ColorModel()
     var colorListForMixer = [ColorModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        for index in 0...4 {
+            colorListForMixer.append(ColorManager.context.colorList[index])
+        }
 
         chooseColorsTableView.rowHeight = UITableView.automaticDimension
 
@@ -26,6 +31,15 @@ class ChooseColorsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         chooseColorsTableView.reloadData()
+    }
+
+    @IBAction func mixColorSelected(_ sender: UIBarButtonItem) {
+        guard let mixColorView = (storyboard?.instantiateViewController(withIdentifier: "MixColorView") as? MixColorViewController) else {
+            return
+        }
+        mixColorView.mainColor = mainColor
+        mixColorView.colorListMix = colorListForMixer
+        self.navigationController?.pushViewController(mixColorView, animated: true)
     }
 }
 
@@ -40,7 +54,13 @@ extension ChooseColorsViewController: UITableViewDataSource {
             return UITableViewCell(style: .default, reuseIdentifier: "Cell")
         }
         let colorModel = ColorManager.context.colorList[indexPath.item]
-        cell.updateContextChooseColor(colorModel: colorModel)
+
+        if indexPath.item < 5 {
+            cell.updateContextChooseColor(colorModel: colorModel, switchIsOn: true)
+        } else {
+            cell.updateContextChooseColor(colorModel: colorModel)
+        }
+
         cell.cellDelegate = self
 
         return cell
@@ -55,14 +75,20 @@ extension ChooseColorsViewController: ColorSummaryCellDelegate {
         }
         switch colorSwitchStatus {
         case true:
-            colorListForMixer.append(colorList[indexInColorList])
+            if colorListForMixer.count < 5 {
+                colorListForMixer.append(colorList[indexInColorList])
+                break
+            }
+            guard let colorCell = colorSummaryCell as? ColorSummaryCell else {
+                break
+            }
+            colorCell.setSwitchStatus(isOn: false)
+
         case false:
             guard let indexInColorListForMixer = colorListForMixer.firstIndex(where: { $0.idColor == colorId }) else {
                 return
             }
             colorListForMixer.remove(at: indexInColorListForMixer)
         }
-
-        print(colorListForMixer)
     }
 }

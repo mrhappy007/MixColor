@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ColorPageViewControllerDelegate: class {
+    func sliderAction(pageViewController: UIPageViewController, colorHexCode: String)
+}
+
 class ColorPageViewController: UIPageViewController {
 
     weak var pageColorDelegate: ColorPageViewControllerDelegate?
@@ -130,8 +134,4 @@ extension ColorPageViewController: HSVPageDelegate {
 
         pageColorDelegate?.sliderAction(pageViewController: self, colorHexCode: UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0).hex)
     }
-}
-
-protocol ColorPageViewControllerDelegate: class {
-    func sliderAction(pageViewController: UIPageViewController, colorHexCode: String)
 }

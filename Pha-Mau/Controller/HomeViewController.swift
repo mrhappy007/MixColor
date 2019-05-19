@@ -85,7 +85,7 @@ class HomeViewController: UIViewController {
         guard let chooseColorView = (storyboard?.instantiateViewController(withIdentifier: "ChooseColorsView") as? ChooseColorsViewController) else {
             return
         }
-        chooseColorView.colorListForMixer.append(mainColor)
+        chooseColorView.mainColor = mainColor
         self.navigationController?.pushViewController(chooseColorView, animated: true)
     }
 
@@ -96,6 +96,10 @@ class HomeViewController: UIViewController {
             colorsSegmented.setImage(imagesBW[index], forSegmentAt: index)
         }
         colorsSegmented.setImage(images[index], forSegmentAt: index)
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 
