@@ -59,7 +59,7 @@ class MixColorViewController: UIViewController {
 
         let alert = UIAlertController(title: titleNoResult, message: messageNoResult, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-            self.navigationController?.popViewController(animated: true)
+            return self.navigationController?.popViewController(animated: true)
         }))
         self.present(alert, animated: true)
     }

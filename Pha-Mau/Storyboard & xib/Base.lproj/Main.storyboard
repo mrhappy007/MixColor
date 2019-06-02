@@ -136,6 +136,9 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdm-rm-ytm">
                                         <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                        <connections>
+                                            <segue destination="hfc-Qg-abZ" kind="presentation" identifier="ChooseColorWithCamera" id="3YY-Jc-4wp"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1121,6 +1124,62 @@
             </objects>
             <point key="canvasLocation" x="4264.8000000000002" y="1921.8890554722641"/>
         </scene>
+        <!--Custom Camera View Controller-->
+        <scene sceneID="2Sc-aN-nDH">
+            <objects>
+                <viewController storyboardIdentifier="CustomCamera" id="hfc-Qg-abZ" customClass="CustomCameraViewController" customModule="Pha_Mau" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CaD-w9-gZr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcO-AP-lbV">
+                                <rect key="frame" x="0.0" y="539" width="375" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEz-vb-2Rr">
+                                        <rect key="frame" x="145.5" y="22" width="84" height="84"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="0R4-Az-WLp"/>
+                                            <constraint firstAttribute="width" secondItem="XEz-vb-2Rr" secondAttribute="height" multiplier="1:1" id="tkd-bj-Rns"/>
+                                        </constraints>
+                                        <state key="normal" image="checkmark"/>
+                                        <connections>
+                                            <action selector="choosedColor:" destination="hfc-Qg-abZ" eventType="touchUpInside" id="Ngg-VI-JPr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="XEz-vb-2Rr" firstAttribute="centerY" secondItem="bcO-AP-lbV" secondAttribute="centerY" id="aTa-M3-Nnh"/>
+                                    <constraint firstItem="XEz-vb-2Rr" firstAttribute="centerX" secondItem="bcO-AP-lbV" secondAttribute="centerX" id="gvQ-bo-JSn"/>
+                                    <constraint firstAttribute="height" constant="128" id="k8e-vz-NrA"/>
+                                </constraints>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3u-95-4FB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bcO-AP-lbV" firstAttribute="leading" secondItem="QO5-Ry-tJv" secondAttribute="leading" id="9AE-Zt-lvO"/>
+                            <constraint firstItem="QO5-Ry-tJv" firstAttribute="trailing" secondItem="bcO-AP-lbV" secondAttribute="trailing" id="JuU-Uz-8RB"/>
+                            <constraint firstItem="e3u-95-4FB" firstAttribute="top" secondItem="CaD-w9-gZr" secondAttribute="top" id="Kwj-Fy-ZJL"/>
+                            <constraint firstItem="bcO-AP-lbV" firstAttribute="top" secondItem="e3u-95-4FB" secondAttribute="bottom" id="a4u-db-61A"/>
+                            <constraint firstAttribute="bottom" secondItem="bcO-AP-lbV" secondAttribute="bottom" id="cMd-Ja-j4p"/>
+                            <constraint firstItem="QO5-Ry-tJv" firstAttribute="trailing" secondItem="e3u-95-4FB" secondAttribute="trailing" id="iCf-0C-obk"/>
+                            <constraint firstItem="e3u-95-4FB" firstAttribute="leading" secondItem="QO5-Ry-tJv" secondAttribute="leading" id="qCY-ng-X62"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QO5-Ry-tJv"/>
+                    </view>
+                    <connections>
+                        <outlet property="confirmColorButton" destination="XEz-vb-2Rr" id="SjQ-Ts-oyQ"/>
+                        <outlet property="previewColorView" destination="bcO-AP-lbV" id="DIw-hO-b1j"/>
+                        <outlet property="previewView" destination="e3u-95-4FB" id="wA8-jb-FYV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rIO-VZ-opP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3325.5999999999999" y="975.56221889055485"/>
+        </scene>
         <!--Chọn màu-->
         <scene sceneID="sjh-Ok-1ws">
             <objects>
@@ -1204,6 +1263,7 @@
         <image name="HSVB&amp;W" width="30" height="30.5"/>
         <image name="RGB" width="47" height="30.5"/>
         <image name="camera" width="30" height="30"/>
+        <image name="checkmark" width="512" height="512"/>
         <image name="edit" width="32" height="32"/>
         <image name="line" width="1" height="20.5"/>
     </resources>

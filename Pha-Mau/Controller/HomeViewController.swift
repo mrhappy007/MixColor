@@ -30,17 +30,23 @@ class HomeViewController: UIViewController {
         colorManager.loadContext()
         pageColorViewController?.mainColorUpdate(color: UIColor(hex: mainColor.hexCode))
         colorNameTextField.text = mainColor.name
-        updateUI()
+        updateUI(newColor: mainColor)
     }
 
-    private func updateUI() {
-        reviewColorView.backgroundColor = UIColor(hex: mainColor.hexCode)
-        colorCodeTextfield.text = mainColor.hexCode
+    private func updateUI(newColor: ColorModel) {
+        reviewColorView.backgroundColor = UIColor(hex: newColor.hexCode)
+        colorCodeTextfield.text = newColor.hexCode
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let pageColorViewController = segue.destination as? ColorPageViewController {
             self.pageColorViewController = pageColorViewController
+        }
+
+        if segue.identifier == "ChooseColorWithCamera" {
+            if let customCameraView = segue.destination as? CustomCameraViewController {
+                customCameraView.customCameraDelegate = self
+            }
         }
     }
 
@@ -65,7 +71,7 @@ class HomeViewController: UIViewController {
         }
 
         mainColor.hexCode = hexCode
-        updateUI()
+        updateUI(newColor: mainColor)
     }
 
     @IBAction func switchColorSegmeted(_ sender: UISegmentedControl) {
@@ -106,6 +112,15 @@ class HomeViewController: UIViewController {
 extension HomeViewController: ColorPageViewControllerDelegate {
     func sliderAction(pageViewController: UIPageViewController, colorHexCode: String) {
         mainColor.hexCode = colorHexCode
-        updateUI()
+        updateUI(newColor: mainColor)
+    }
+}
+
+extension HomeViewController: CustomCameraDelegate {
+    func choosedColor(colorHexResult: String) {
+        if colorHexResult.isEmpty { return }
+        mainColor.hexCode = colorHexResult
+        updateUI(newColor: mainColor)
+        print("Done choose color: ", colorHexResult)
     }
 }

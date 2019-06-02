@@ -25,6 +25,7 @@
 		41817DB02278943F000C956A /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41817DAF2278943F000C956A /* ColorModel.swift */; };
 		41817DBA227C851F000C956A /* ChooseColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41817DB9227C851F000C956A /* ChooseColorsViewController.swift */; };
 		4198D28122618A94004DBDF9 /* ColorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198D28022618A94004DBDF9 /* ColorDetailViewController.swift */; };
+		41BEB4C1229E0C8B008E2FD2 /* CustomCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEB4C0229E0C8B008E2FD2 /* CustomCameraViewController.swift */; };
 		41C23C0B22508F2600B6C303 /* RGBPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C23C0922508F2600B6C303 /* RGBPage.swift */; };
 		41C23C0F2250941000B6C303 /* CMYKPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C23C0D2250941000B6C303 /* CMYKPage.swift */; };
 		41C23C132250951200B6C303 /* HSVPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C23C112250951200B6C303 /* HSVPage.swift */; };
@@ -53,6 +54,7 @@
 		41817DAF2278943F000C956A /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		41817DB9227C851F000C956A /* ChooseColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorsViewController.swift; sourceTree = "<group>"; };
 		4198D28022618A94004DBDF9 /* ColorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDetailViewController.swift; sourceTree = "<group>"; };
+		41BEB4C0229E0C8B008E2FD2 /* CustomCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraViewController.swift; sourceTree = "<group>"; };
 		41C23C0922508F2600B6C303 /* RGBPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBPage.swift; sourceTree = "<group>"; };
 		41C23C0D2250941000B6C303 /* CMYKPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMYKPage.swift; sourceTree = "<group>"; };
 		41C23C112250951200B6C303 /* HSVPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSVPage.swift; sourceTree = "<group>"; };
@@ -120,8 +122,8 @@
 		413D057A2243D5A900C0485F /* Pha-Mau */ = {
 			isa = PBXGroup;
 			children = (
-				41817DAC22774D9A000C956A /* Data */,
 				413D05872243D5AA00C0485F /* Info.plist */,
+				41817DAC22774D9A000C956A /* Data */,
 				411095CC226AF36A00E5DCA7 /* ViewCell */,
 				41C23C182251124700B6C303 /* Assets */,
 				416E7AE72255814E0046F3BF /* Extension */,
@@ -166,6 +168,7 @@
 				4198D28022618A94004DBDF9 /* ColorDetailViewController.swift */,
 				41817DB9227C851F000C956A /* ChooseColorsViewController.swift */,
 				41315C6522866FBE0036E5D6 /* MixColorViewController.swift */,
+				41BEB4C0229E0C8B008E2FD2 /* CustomCameraViewController.swift */,
 				411095E2226B886F00E5DCA7 /* Color page */,
 			);
 			path = Controller;
@@ -353,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41BEB4C1229E0C8B008E2FD2 /* CustomCameraViewController.swift in Sources */,
 				41C23C0F2250941000B6C303 /* CMYKPage.swift in Sources */,
 				41C23C222252666900B6C303 /* ColorPageViewController.swift in Sources */,
 				416E7AE92255815E0046F3BF /* Color.swift in Sources */,
