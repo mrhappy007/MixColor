@@ -35,14 +35,13 @@ class MixColorViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let mixColor = MixColor(newMainColor: mainColor, newColorList: colorListMix)
-
-        guard let currentTrongSo = mixColor.mixColor() else {
+        let mixColor = MixColorsV2(mainColor: mainColor, colorListNew: colorListMix)
+        guard let weightNums = mixColor.getWeightNums() else {
             progressCirle.stopAnimating()
             noResultColorListMix()
             return
         }
-        trongSo = currentTrongSo
+        trongSo = weightNums
         mixColorTableView.reloadData()
         progressCirle.stopAnimating()
     }
