@@ -56,22 +56,26 @@ class HomeViewController: UIViewController {
 
     @IBAction func maMauDidChange(_ sender: UITextField) {
         guard let hexCode = sender.text else {
+            sender.text = mainColor.hexCode
             return
         }
 
-        let exception: UInt32 = 16_777_216
+        let exception: UInt32 = 16_777_215 // Todo: ffffff
 
         let canner = Scanner(string: hexCode)
         var value: UInt32 = exception
         canner.scanHexInt32(&value)
 
         if value >= exception {
-            sender.text = reviewColorView.backgroundColor?.hex
+            sender.text = mainColor.hexCode
             return
         }
 
         mainColor.hexCode = hexCode
         updateUI(newColor: mainColor)
+    }
+
+    @IBAction func maMauTouchUpOutside(_ sender: UITextField) {
     }
 
     @IBAction func switchColorSegmeted(_ sender: UISegmentedControl) {
