@@ -63,10 +63,11 @@
                                                 </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
                                                     <action selector="maMauDidChange:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="H4j-hz-501"/>
                                                     <action selector="maMauTouchUpOutside:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="wpg-9R-CPt"/>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="7fe-SU-1uO"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="#" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p8C-L2-Q7p">

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var reviewColorView: UIView!
     @IBOutlet weak var colorsSegmented: UISegmentedControl!
@@ -30,12 +30,25 @@ class HomeViewController: UIViewController {
         colorManager.loadContext()
         pageColorViewController?.mainColorUpdate(color: UIColor(hex: mainColor.hexCode))
         colorNameTextField.text = mainColor.name
-        updateUI(newColor: mainColor)
+        updateUI(newColorHexCode: mainColor.hexCode)
     }
 
-    private func updateUI(newColor: ColorModel) {
-        reviewColorView.backgroundColor = UIColor(hex: newColor.hexCode)
-        colorCodeTextfield.text = newColor.hexCode
+    private func updateUI(newColorHexCode: String) {
+        mainColor.hexCode = newColorHexCode
+        reviewColorView.backgroundColor = UIColor(hex: newColorHexCode)
+        colorCodeTextfield.text = newColorHexCode
+        pageColorViewController?.mainColorUpdate(color: UIColor(hex: newColorHexCode))
+    }
+    /*
+     Nếu dùng chung với updateUI
+     thì xuất hiện bug
+ K(cmyk) = 1 c,m,y = 0
+     v(hsv) = 0 -> h,s = 0
+     */
+    private func updateReviewColorAndHexCode(newColorHexCode: String) {
+        mainColor.hexCode = newColorHexCode
+        reviewColorView.backgroundColor = UIColor(hex: newColorHexCode)
+        colorCodeTextfield.text = newColorHexCode
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -56,23 +69,30 @@ class HomeViewController: UIViewController {
 
     @IBAction func maMauDidChange(_ sender: UITextField) {
         guard let hexCode = sender.text else {
-            sender.text = mainColor.hexCode
+            updateUI(newColorHexCode: mainColor.hexCode)
             return
         }
 
-        let exception: UInt32 = 16_777_215 // Todo: ffffff
+        let exception: UInt32 = 16_777_215 // 16_777_215 = ffffff
 
         let canner = Scanner(string: hexCode)
         var value: UInt32 = exception
         canner.scanHexInt32(&value)
 
-        if value >= exception {
-            sender.text = mainColor.hexCode
+        if value > exception {
+            updateUI(newColorHexCode: mainColor.hexCode)
             return
         }
 
-        mainColor.hexCode = hexCode
-        updateUI(newColor: mainColor)
+        updateUI(newColorHexCode: String(String("000000" + hexCode).dropFirst(hexCode.count)))
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == colorCodeTextfield {
+            textField.resignFirstResponder()
+            return true
+        }
+        return false
     }
 
     @IBAction func maMauTouchUpOutside(_ sender: UITextField) {
@@ -115,16 +135,13 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: ColorPageViewControllerDelegate {
     func sliderAction(pageViewController: UIPageViewController, colorHexCode: String) {
-        mainColor.hexCode = colorHexCode
-        updateUI(newColor: mainColor)
+        updateReviewColorAndHexCode(newColorHexCode: colorHexCode)
     }
 }
 
 extension HomeViewController: CustomCameraDelegate {
     func choosedColor(colorHexResult: String) {
         if colorHexResult.isEmpty { return }
-        mainColor.hexCode = colorHexResult
-        updateUI(newColor: mainColor)
-        print("Done choose color: ", colorHexResult)
+        updateReviewColorAndHexCode(newColorHexCode: colorHexResult)
     }
 }
