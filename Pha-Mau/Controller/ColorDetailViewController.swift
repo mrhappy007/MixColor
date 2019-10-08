@@ -44,16 +44,16 @@ class ColorDetailViewController: UIViewController {
 
     private func updateRGBCodeLabel(color: UIColor) {
         let rgb = color.rgb
-        rgbCodeLabel.text = "\(rgb.red) : \(rgb.green) : \(rgb.blue)"
+        rgbCodeLabel.text = "\(Int(rgb.red * 255)): \(Int(rgb.green * 255)) : \(Int(rgb.blue * 255 ))"
     }
 
     private func updateCMYKCodeLabel(color: UIColor) {
         let cmyk = color.cmyk
-        cmykCodeLabel.text = "\(cmyk.cyan) : \(cmyk.magenta) : \(cmyk.yellow) : \(cmyk.black)"
+        cmykCodeLabel.text = String(format: "%.03f : %.03f : %.03f : %.03f", cmyk.cyan, cmyk.magenta, cmyk.yellow, cmyk.black)
     }
 
     private func updateHsvCodeLabel(color: UIColor) {
         let hsv = color.hsv
-        hsvCodeLabel.text = "\(hsv.hue) : \(hsv.saturation) : \(hsv.brightness)"
+        hsvCodeLabel.text = String(format: "%.03f : %.03f : %.03f", hsv.hue, hsv.saturation, hsv.brightness)
     }
 }
