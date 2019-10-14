@@ -11,6 +11,7 @@ import UIKit
 class ChooseColorsViewController: UIViewController {
 
     @IBOutlet weak var chooseColorsTableView: UITableView!
+    @IBOutlet weak var countSelectedColors: UILabel!
 
     var mainColor = ColorModel()
     var colorListForMixer = [ColorModel]()
@@ -31,6 +32,7 @@ class ChooseColorsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         chooseColorsTableView.reloadData()
+        countSelectedColors.text = String(colorListForMixer.count)
     }
 
     @IBAction func mixColorSelected(_ sender: UIBarButtonItem) {
@@ -78,6 +80,7 @@ extension ChooseColorsViewController: ColorSummaryCellDelegate {
         case true:
             if colorListForMixer.count < 5 {
                 colorListForMixer.append(colorList[indexInColorList])
+                countSelectedColors.text = String(colorListForMixer.count)
                 break
             }
             guard let colorCell = colorSummaryCell as? ColorSummaryCell else {
@@ -90,6 +93,7 @@ extension ChooseColorsViewController: ColorSummaryCellDelegate {
                 return
             }
             colorListForMixer.remove(at: indexInColorListForMixer)
+            countSelectedColors.text = String(colorListForMixer.count)
         }
     }
 }

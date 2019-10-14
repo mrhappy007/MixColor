@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5aA-tm-QkJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5aA-tm-QkJ">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhz-Ud-K34">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="231"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZX-Jr-xAs">
-                                        <rect key="frame" x="0.0" y="218" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="189" width="375" height="42"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Po-2X-rdM">
                                                 <rect key="frame" x="281" y="32" width="86" height="1"/>
@@ -111,10 +111,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iqT-iD-iDm">
-                                <rect key="frame" x="61" y="268" width="253" height="31"/>
+                                <rect key="frame" x="-24.5" y="239" width="424" height="60"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jYj-sO-1oV">
-                                        <rect key="frame" x="56" y="0.0" width="197" height="32"/>
+                                        <rect key="frame" x="86" y="0.0" width="338" height="61"/>
                                         <segments>
                                             <segment title="" image="RGB"/>
                                             <segment title="" image="CMYKB&amp;W"/>
@@ -126,16 +126,16 @@
                                         </connections>
                                     </segmentedControl>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="8Vw-uh-v9A">
-                                        <rect key="frame" x="0.0" y="0.0" width="31" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="8Vw-uh-v9A" secondAttribute="height" multiplier="1:1" id="r0l-cq-oXX"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="XCW-jz-FUr">
-                                        <rect key="frame" x="47" y="0.0" width="1" height="31"/>
+                                        <rect key="frame" x="76" y="0.0" width="2" height="60"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdm-rm-ytm">
-                                        <rect key="frame" x="0.0" y="0.0" width="47" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="76" height="60"/>
                                         <connections>
                                             <segue destination="hfc-Qg-abZ" kind="presentation" identifier="ChooseColorWithCamera" id="3YY-Jc-4wp"/>
                                         </connections>
@@ -909,7 +909,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jtq-n6-sjc" id="bF4-3f-Elt">
-                                            <rect key="frame" x="0.0" y="0.0" width="348.5" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GBq-uC-Hsr">
@@ -920,7 +920,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên màu, Tên màu" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyS-tz-ybP">
-                                                    <rect key="frame" x="104" y="4" width="228.5" height="40"/>
+                                                    <rect key="frame" x="104" y="4" width="229" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="Gkx-gP-K8p"/>
                                                     </constraints>
@@ -929,7 +929,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# FFFFFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tmt-3n-vb2">
-                                                    <rect key="frame" x="104" y="44" width="220.5" height="20"/>
+                                                    <rect key="frame" x="104" y="44" width="221" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="Vpd-v3-bub"/>
                                                     </constraints>
@@ -1241,6 +1241,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="chooseColorsTableView" destination="V07-3C-FgN" id="0HK-td-7S4"/>
+                        <outlet property="countSelectedColors" destination="CYv-VE-hvV" id="cqK-S2-0fh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v3i-eM-0TI" userLabel="First Responder" sceneMemberID="firstResponder"/>
