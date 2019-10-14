@@ -45,7 +45,7 @@ class MixColorsV2 {
     func getWeightNums() -> [Int]? {
         var weightNumsResult = Array(repeating: 0, count: colorList.count)
         if let canMixWithAColor = canMixWithAColor(mainColor: mainColor, colorList: colorList) {
-            weightNumsResult[canMixWithAColor] = 1
+            weightNumsResult[canMixWithAColor] = 100
             return weightNumsResult
         }
         return canMixWithColors(mainColor: mainColor, colorList: colorList)
@@ -71,7 +71,8 @@ class MixColorsV2 {
             }
 
             if canMixCodition(chenhLechMau: (avgRed, avgGreen, avgBlue)) {
-                return trongSo
+                let sumWeightNum = trongSo.reduce(0, +)
+                return trongSo.map { $0 / sumWeightNum * 100 }
             }
         }
         return nil
