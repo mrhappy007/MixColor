@@ -104,7 +104,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func saveDidSelect(_ sender: UIBarButtonItem) {
-        colorManager.appentColor(colorModel: mainColor)
+        colorManager.appentColor(colorModel: mainColor.copy() as! ColorModel)
         guard let colorListView = (storyboard?.instantiateViewController(withIdentifier: "ColorListView") as? ColorListViewController) else {
             return
         }

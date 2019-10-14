@@ -8,7 +8,12 @@
 
 import Foundation
 
-class ColorModel {
+class ColorModel: NSObject, NSCopying {
+
+    func copy(with zone: NSZone? = nil) -> Any {
+        let colorModel = ColorModel(newID: self.idColor, newName: self.name, newHexCode: self.hexCode)
+        return colorModel
+    }
 
     var name: String
     var hexCode: String
@@ -27,7 +32,11 @@ class ColorModel {
         idColor = newID
     }
 
-    convenience init() {
+    convenience override init() {
         self.init(newName: "new color", newHexCode: "005493")
     }
+}
+
+func == (lhs: ColorModel, rhs: ColorModel) -> Bool {
+    return lhs.idColor == rhs.idColor
 }

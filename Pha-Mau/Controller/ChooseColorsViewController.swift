@@ -53,9 +53,10 @@ extension ChooseColorsViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ColorSummaryCell", for: indexPath) as?  ColorSummaryCell else {
             return UITableViewCell(style: .default, reuseIdentifier: "Cell")
         }
-        let colorModel = ColorManager.context.colorList[indexPath.item]
 
-        if indexPath.item < 5 {
+        let colorModel = ColorManager.context.colorList[indexPath.row]
+
+        if colorListForMixer.contains(colorModel) {
             cell.updateContextChooseColor(colorModel: colorModel, switchIsOn: true)
         } else {
             cell.updateContextChooseColor(colorModel: colorModel)
