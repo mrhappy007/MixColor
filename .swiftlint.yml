@@ -38,6 +38,7 @@ opt_in_rules:
 
 disabled_rules: # rule identifiers to exclude from running
   - force_cast
+  - large_tuple
   # - force_try
   # - class_delegate_protocol
   # - function_parameter_count
@@ -58,6 +59,7 @@ line_length:
   warning: 180 
   error: 350
   ignores_comments: true
+  ignores_function_declarations: true
   ignores_urls: true
 
 nesting:

@@ -7,22 +7,60 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		410FE70E2332566A000ADD66 /* MixColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FE70D2332566A000ADD66 /* MixColors.swift */; };
+		411095CF226AF3AA00E5DCA7 /* ColorSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411095CD226AF3AA00E5DCA7 /* ColorSummaryCell.swift */; };
+		411095D0226AF3AA00E5DCA7 /* ColorSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 411095CE226AF3AA00E5DCA7 /* ColorSummaryCell.xib */; };
+		411095DF226B3FED00E5DCA7 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411095DE226B3FED00E5DCA7 /* ColorManager.swift */; };
+		41195D4E22AE946E0067A44F /* ColorMixingList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41195D4D22AE946E0067A44F /* ColorMixingList.plist */; };
+		41315C6622866FBE0036E5D6 /* MixColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41315C6522866FBE0036E5D6 /* MixColorViewController.swift */; };
+		4138175F2270BFB600F97E6B /* Hemau.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138175E2270BFB600F97E6B /* Hemau.swift */; };
 		413D057C2243D5A900C0485F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413D057B2243D5A900C0485F /* AppDelegate.swift */; };
-		413D057E2243D5A900C0485F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413D057D2243D5A900C0485F /* ViewController.swift */; };
+		413D057E2243D5A900C0485F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413D057D2243D5A900C0485F /* HomeViewController.swift */; };
 		413D05812243D5A900C0485F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 413D057F2243D5A900C0485F /* Main.storyboard */; };
 		413D05832243D5AA00C0485F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 413D05822243D5AA00C0485F /* Assets.xcassets */; };
 		413D05862243D5AA00C0485F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 413D05842243D5AA00C0485F /* LaunchScreen.storyboard */; };
+		416E7AE92255815E0046F3BF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E7AE82255815E0046F3BF /* Color.swift */; };
+		416E7B1D225B88D00046F3BF /* ColorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E7B1C225B88D00046F3BF /* ColorListViewController.swift */; };
+		416E7B28225F7EAC0046F3BF /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E7B27225F7EAC0046F3BF /* CustomView.swift */; };
+		41817DAE22774E25000C956A /* ColorList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41817DAD22774E25000C956A /* ColorList.plist */; };
+		41817DB02278943F000C956A /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41817DAF2278943F000C956A /* ColorModel.swift */; };
+		41817DBA227C851F000C956A /* ChooseColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41817DB9227C851F000C956A /* ChooseColorsViewController.swift */; };
+		4198D28122618A94004DBDF9 /* ColorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198D28022618A94004DBDF9 /* ColorDetailViewController.swift */; };
+		41BEB4C1229E0C8B008E2FD2 /* CustomCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BEB4C0229E0C8B008E2FD2 /* CustomCameraViewController.swift */; };
+		41C23C0B22508F2600B6C303 /* RGBPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C23C0922508F2600B6C303 /* RGBPage.swift */; };
+		41C23C0F2250941000B6C303 /* CMYKPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C23C0D2250941000B6C303 /* CMYKPage.swift */; };
+		41C23C132250951200B6C303 /* HSVPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C23C112250951200B6C303 /* HSVPage.swift */; };
+		41C23C222252666900B6C303 /* ColorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C23C212252666900B6C303 /* ColorPageViewController.swift */; };
 		A4DA492A8F29CD5B189E7028 /* Pods_Pha_Mau.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 448DD5A36E59B64DD542CE88 /* Pods_Pha_Mau.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		410FE70D2332566A000ADD66 /* MixColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixColors.swift; sourceTree = "<group>"; };
+		411095CD226AF3AA00E5DCA7 /* ColorSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSummaryCell.swift; sourceTree = "<group>"; };
+		411095CE226AF3AA00E5DCA7 /* ColorSummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSummaryCell.xib; sourceTree = "<group>"; };
+		411095DE226B3FED00E5DCA7 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorManager.swift; path = ModelManager/ColorManager.swift; sourceTree = "<group>"; };
+		41195D4D22AE946E0067A44F /* ColorMixingList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ColorMixingList.plist; sourceTree = "<group>"; };
+		41315C6522866FBE0036E5D6 /* MixColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixColorViewController.swift; sourceTree = "<group>"; };
+		4138175E2270BFB600F97E6B /* Hemau.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hemau.swift; sourceTree = "<group>"; };
 		413D05782243D5A900C0485F /* Pha-Mau.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pha-Mau.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		413D057B2243D5A900C0485F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		413D057D2243D5A900C0485F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		413D057D2243D5A900C0485F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		413D05802243D5A900C0485F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		413D05822243D5AA00C0485F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		413D05852243D5AA00C0485F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		413D05872243D5AA00C0485F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		416E7AE82255815E0046F3BF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		416E7B1C225B88D00046F3BF /* ColorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorListViewController.swift; sourceTree = "<group>"; };
+		416E7B27225F7EAC0046F3BF /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		41817DAD22774E25000C956A /* ColorList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ColorList.plist; sourceTree = "<group>"; };
+		41817DAF2278943F000C956A /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
+		41817DB9227C851F000C956A /* ChooseColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorsViewController.swift; sourceTree = "<group>"; };
+		4198D28022618A94004DBDF9 /* ColorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDetailViewController.swift; sourceTree = "<group>"; };
+		41BEB4C0229E0C8B008E2FD2 /* CustomCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraViewController.swift; sourceTree = "<group>"; };
+		41C23C0922508F2600B6C303 /* RGBPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBPage.swift; sourceTree = "<group>"; };
+		41C23C0D2250941000B6C303 /* CMYKPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMYKPage.swift; sourceTree = "<group>"; };
+		41C23C112250951200B6C303 /* HSVPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSVPage.swift; sourceTree = "<group>"; };
+		41C23C212252666900B6C303 /* ColorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPageViewController.swift; sourceTree = "<group>"; };
 		448DD5A36E59B64DD542CE88 /* Pods_Pha_Mau.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pha_Mau.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		578B8808A2EE2F30E8BC41D6 /* Pods-Pha-Mau.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pha-Mau.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pha-Mau/Pods-Pha-Mau.release.xcconfig"; sourceTree = "<group>"; };
 		5B73F4F3ED982E203E37AE8C /* Pods-Pha-Mau.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pha-Mau.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pha-Mau/Pods-Pha-Mau.debug.xcconfig"; sourceTree = "<group>"; };
@@ -40,6 +78,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		411095CC226AF36A00E5DCA7 /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				411095CD226AF3AA00E5DCA7 /* ColorSummaryCell.swift */,
+				411095CE226AF3AA00E5DCA7 /* ColorSummaryCell.xib */,
+			);
+			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		411095E2226B886F00E5DCA7 /* Color page */ = {
+			isa = PBXGroup;
+			children = (
+				41C23C212252666900B6C303 /* ColorPageViewController.swift */,
+			);
+			path = "Color page";
+			sourceTree = "<group>";
+		};
+		4138175D2270BFAB00F97E6B /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				4138175E2270BFB600F97E6B /* Hemau.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		413D056F2243D5A900C0485F = {
 			isa = PBXGroup;
 			children = (
@@ -61,14 +124,104 @@
 		413D057A2243D5A900C0485F /* Pha-Mau */ = {
 			isa = PBXGroup;
 			children = (
-				413D057B2243D5A900C0485F /* AppDelegate.swift */,
-				413D057D2243D5A900C0485F /* ViewController.swift */,
-				413D057F2243D5A900C0485F /* Main.storyboard */,
-				413D05822243D5AA00C0485F /* Assets.xcassets */,
-				413D05842243D5AA00C0485F /* LaunchScreen.storyboard */,
 				413D05872243D5AA00C0485F /* Info.plist */,
+				41817DAC22774D9A000C956A /* Data */,
+				411095CC226AF36A00E5DCA7 /* ViewCell */,
+				41C23C182251124700B6C303 /* Assets */,
+				416E7AE72255814E0046F3BF /* Extension */,
+				416E7B26225F7E880046F3BF /* CustomUI */,
+				41C23BE3224D274B00B6C303 /* Common */,
+				41C23BD9224A68B400B6C303 /* Controller */,
+				41C23C192251126600B6C303 /* Model */,
+				41C23BDA224A69D800B6C303 /* Storyboard & xib */,
 			);
 			path = "Pha-Mau";
+			sourceTree = "<group>";
+		};
+		416E7AE72255814E0046F3BF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				416E7AE82255815E0046F3BF /* Color.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		416E7B26225F7E880046F3BF /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				416E7B27225F7EAC0046F3BF /* CustomView.swift */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		41817DAC22774D9A000C956A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				41817DAD22774E25000C956A /* ColorList.plist */,
+				41195D4D22AE946E0067A44F /* ColorMixingList.plist */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		41C23BD9224A68B400B6C303 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				413D057D2243D5A900C0485F /* HomeViewController.swift */,
+				416E7B1C225B88D00046F3BF /* ColorListViewController.swift */,
+				4198D28022618A94004DBDF9 /* ColorDetailViewController.swift */,
+				41817DB9227C851F000C956A /* ChooseColorsViewController.swift */,
+				41315C6522866FBE0036E5D6 /* MixColorViewController.swift */,
+				41BEB4C0229E0C8B008E2FD2 /* CustomCameraViewController.swift */,
+				411095E2226B886F00E5DCA7 /* Color page */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		41C23BDA224A69D800B6C303 /* Storyboard & xib */ = {
+			isa = PBXGroup;
+			children = (
+				413D057F2243D5A900C0485F /* Main.storyboard */,
+				413D05842243D5AA00C0485F /* LaunchScreen.storyboard */,
+			);
+			path = "Storyboard & xib";
+			sourceTree = "<group>";
+		};
+		41C23BE3224D274B00B6C303 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4138175D2270BFAB00F97E6B /* Enum */,
+				41C23C16225111E300B6C303 /* ColorPage */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		41C23C16225111E300B6C303 /* ColorPage */ = {
+			isa = PBXGroup;
+			children = (
+				41C23C0922508F2600B6C303 /* RGBPage.swift */,
+				41C23C0D2250941000B6C303 /* CMYKPage.swift */,
+				41C23C112250951200B6C303 /* HSVPage.swift */,
+			);
+			path = ColorPage;
+			sourceTree = "<group>";
+		};
+		41C23C182251124700B6C303 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				413D05822243D5AA00C0485F /* Assets.xcassets */,
+				413D057B2243D5A900C0485F /* AppDelegate.swift */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		41C23C192251126600B6C303 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				41817DAF2278943F000C956A /* ColorModel.swift */,
+				411095DE226B3FED00E5DCA7 /* ColorManager.swift */,
+				410FE70D2332566A000ADD66 /* MixColors.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		65031D62DD515C7F02B7DA57 /* Frameworks */ = {
@@ -122,6 +275,7 @@
 				TargetAttributes = {
 					413D05772243D5A900C0485F = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -150,6 +304,9 @@
 			files = (
 				413D05862243D5AA00C0485F /* LaunchScreen.storyboard in Resources */,
 				413D05832243D5AA00C0485F /* Assets.xcassets in Resources */,
+				41195D4E22AE946E0067A44F /* ColorMixingList.plist in Resources */,
+				411095D0226AF3AA00E5DCA7 /* ColorSummaryCell.xib in Resources */,
+				41817DAE22774E25000C956A /* ColorList.plist in Resources */,
 				413D05812243D5A900C0485F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,8 +360,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				413D057E2243D5A900C0485F /* ViewController.swift in Sources */,
+				41BEB4C1229E0C8B008E2FD2 /* CustomCameraViewController.swift in Sources */,
+				41C23C0F2250941000B6C303 /* CMYKPage.swift in Sources */,
+				41C23C222252666900B6C303 /* ColorPageViewController.swift in Sources */,
+				416E7AE92255815E0046F3BF /* Color.swift in Sources */,
+				41315C6622866FBE0036E5D6 /* MixColorViewController.swift in Sources */,
+				4198D28122618A94004DBDF9 /* ColorDetailViewController.swift in Sources */,
+				413D057E2243D5A900C0485F /* HomeViewController.swift in Sources */,
+				41C23C132250951200B6C303 /* HSVPage.swift in Sources */,
+				411095CF226AF3AA00E5DCA7 /* ColorSummaryCell.swift in Sources */,
+				41817DB02278943F000C956A /* ColorModel.swift in Sources */,
+				4138175F2270BFB600F97E6B /* Hemau.swift in Sources */,
+				41817DBA227C851F000C956A /* ChooseColorsViewController.swift in Sources */,
+				411095DF226B3FED00E5DCA7 /* ColorManager.swift in Sources */,
 				413D057C2243D5A900C0485F /* AppDelegate.swift in Sources */,
+				416E7B28225F7EAC0046F3BF /* CustomView.swift in Sources */,
+				410FE70E2332566A000ADD66 /* MixColors.swift in Sources */,
+				41C23C0B22508F2600B6C303 /* RGBPage.swift in Sources */,
+				416E7B1D225B88D00046F3BF /* ColorListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,16 +525,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LC9T3BMSGH;
 				INFOPLIST_FILE = "Pha-Mau/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HieuNghia.Pha-Mau";
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = HieuNghia.com.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -371,16 +547,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LC9T3BMSGH;
 				INFOPLIST_FILE = "Pha-Mau/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HieuNghia.Pha-Mau";
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = HieuNghia.com.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
