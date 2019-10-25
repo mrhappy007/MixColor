@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MixColorsV2 {
+class MixColors {
     private let saiSo: CGFloat = 5.0
     private let itemsCountLimit = 5
     private let baseNumber = 50

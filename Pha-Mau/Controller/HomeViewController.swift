@@ -95,20 +95,26 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         return false
     }
 
-    @IBAction func maMauTouchUpOutside(_ sender: UITextField) {
-    }
-
     @IBAction func switchColorSegmeted(_ sender: UISegmentedControl) {
         switchColorView(index: sender.selectedSegmentIndex)
         pageColorViewController?.whichToPage(index: sender.selectedSegmentIndex, updateColor: UIColor(hex: mainColor.hexCode))
     }
 
     @IBAction func saveDidSelect(_ sender: UIBarButtonItem) {
+        colorNameDidChange(colorNameTextField)
+        maMauDidChange(colorCodeTextfield)
+
         colorManager.appentColor(colorModel: mainColor.copy() as! ColorModel)
-        guard let colorListView = (storyboard?.instantiateViewController(withIdentifier: "ColorListView") as? ColorListViewController) else {
+//        guard let colorListView = (storyboard?.instantiateViewController(withIdentifier: "ColorListView") as? ColorListViewController) else {
+//            return
+//        }
+//        self.navigationController?.pushViewController(colorListView, animated: true)
+
+        guard let colorDetailView = (storyboard?.instantiateViewController(withIdentifier: "ColorDetailView") as? ColorDetailViewController) else {
             return
         }
-        self.navigationController?.pushViewController(colorListView, animated: true)
+        colorDetailView.colorMoDel = mainColor
+        self.navigationController?.pushViewController(colorDetailView, animated: true)
     }
 
     @IBAction func mixColor(_ sender: UIButton) {

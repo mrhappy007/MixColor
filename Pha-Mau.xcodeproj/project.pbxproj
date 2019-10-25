@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		410FE70E2332566A000ADD66 /* MixColorsV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FE70D2332566A000ADD66 /* MixColorsV2.swift */; };
+		410FE70E2332566A000ADD66 /* MixColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FE70D2332566A000ADD66 /* MixColors.swift */; };
 		411095CF226AF3AA00E5DCA7 /* ColorSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411095CD226AF3AA00E5DCA7 /* ColorSummaryCell.swift */; };
 		411095D0226AF3AA00E5DCA7 /* ColorSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 411095CE226AF3AA00E5DCA7 /* ColorSummaryCell.xib */; };
 		411095DF226B3FED00E5DCA7 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411095DE226B3FED00E5DCA7 /* ColorManager.swift */; };
@@ -35,7 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		410FE70D2332566A000ADD66 /* MixColorsV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixColorsV2.swift; sourceTree = "<group>"; };
+		410FE70D2332566A000ADD66 /* MixColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixColors.swift; sourceTree = "<group>"; };
 		411095CD226AF3AA00E5DCA7 /* ColorSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSummaryCell.swift; sourceTree = "<group>"; };
 		411095CE226AF3AA00E5DCA7 /* ColorSummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSummaryCell.xib; sourceTree = "<group>"; };
 		411095DE226B3FED00E5DCA7 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorManager.swift; path = ModelManager/ColorManager.swift; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 			children = (
 				41817DAF2278943F000C956A /* ColorModel.swift */,
 				411095DE226B3FED00E5DCA7 /* ColorManager.swift */,
-				410FE70D2332566A000ADD66 /* MixColorsV2.swift */,
+				410FE70D2332566A000ADD66 /* MixColors.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -375,7 +375,7 @@
 				411095DF226B3FED00E5DCA7 /* ColorManager.swift in Sources */,
 				413D057C2243D5A900C0485F /* AppDelegate.swift in Sources */,
 				416E7B28225F7EAC0046F3BF /* CustomView.swift in Sources */,
-				410FE70E2332566A000ADD66 /* MixColorsV2.swift in Sources */,
+				410FE70E2332566A000ADD66 /* MixColors.swift in Sources */,
 				41C23C0B22508F2600B6C303 /* RGBPage.swift in Sources */,
 				416E7B1D225B88D00046F3BF /* ColorListViewController.swift in Sources */,
 			);
