@@ -46,7 +46,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     }
 
     private func setDefaultName() {
-        mainColor.name = "New color"
+        mainColor.setDefaultColorName()
         colorNameTextField.text = mainColor.name
     }
 

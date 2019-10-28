@@ -19,17 +19,22 @@ class ColorModel: NSObject, NSCopying {
     var hexCode: String
     var idColor: String
 
-    init(newID: String = "", newName: String, newHexCode: String) {
-        name = newName
+    init(newID: String = "", newName: String = "", newHexCode: String) {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyMMddHHmmss"
+
         hexCode = newHexCode
-        if newID.isEmpty {
-            let date = Date()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            idColor = formatter.string(from: date)
-            return
+
+        name = newName
+        if newName.isEmpty {
+            name = formatter.string(from: date)
         }
+
         idColor = newID
+        if newID.isEmpty {
+            idColor = formatter.string(from: date)
+        }
     }
 
     convenience override init() {
@@ -37,7 +42,10 @@ class ColorModel: NSObject, NSCopying {
     }
 
     func setDefaultColorName() {
-        name = "New color"
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyMMddHHmmss"
+        name = formatter.string(from: date)
     }
 }
 
