@@ -25,6 +25,11 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setDefaultName()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         colorManager.loadContext()
@@ -39,6 +44,12 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         colorCodeTextfield.text = newColorHexCode
         pageColorViewController?.mainColorUpdate(color: UIColor(hex: newColorHexCode))
     }
+
+    private func setDefaultName() {
+        mainColor.name = "New color"
+        colorNameTextField.text = mainColor.name
+    }
+
     /*
      Nếu dùng chung với updateUI
      thì xuất hiện bug
@@ -64,11 +75,24 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func colorNameDidChange(_ sender: UITextField) {
-        mainColor.name = sender.text ?? mainColor.name
+        guard let colorName = sender.text else {
+            colorNameTextField.text = mainColor.name
+            return
+        }
+        if colorName.isEmpty {
+            colorNameTextField.text = mainColor.name
+            return
+        }
+        mainColor.name = colorName
     }
 
     @IBAction func maMauDidChange(_ sender: UITextField) {
         guard let hexCode = sender.text else {
+            updateUI(newColorHexCode: mainColor.hexCode)
+            return
+        }
+
+        if hexCode.isEmpty {
             updateUI(newColorHexCode: mainColor.hexCode)
             return
         }
@@ -105,15 +129,11 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         maMauDidChange(colorCodeTextfield)
 
         colorManager.appentColor(colorModel: mainColor.copy() as! ColorModel)
-//        guard let colorListView = (storyboard?.instantiateViewController(withIdentifier: "ColorListView") as? ColorListViewController) else {
-//            return
-//        }
-//        self.navigationController?.pushViewController(colorListView, animated: true)
 
         guard let colorDetailView = (storyboard?.instantiateViewController(withIdentifier: "ColorDetailView") as? ColorDetailViewController) else {
             return
         }
-        colorDetailView.colorMoDel = mainColor
+        colorDetailView.mainColor = mainColor
         self.navigationController?.pushViewController(colorDetailView, animated: true)
     }
 

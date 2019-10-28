@@ -49,7 +49,7 @@ extension ColorListViewController: UITableViewDelegate {
         guard let colorDetailView = (storyboard?.instantiateViewController(withIdentifier: "ColorDetailView") as? ColorDetailViewController) else {
             return
         }
-        colorDetailView.colorMoDel = collorManager.colorList[indexPath.item]
+        colorDetailView.mainColor = collorManager.colorList[indexPath.item]
         self.navigationController?.pushViewController(colorDetailView, animated: true)
     }
 

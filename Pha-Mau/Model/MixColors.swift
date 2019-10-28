@@ -13,33 +13,76 @@ class MixColors {
     private let saiSo: CGFloat = 5.0
     private let itemsCountLimit = 5
     private let baseNumber = 50
-    private let maTranTrongSo = { () -> [[Int]] in
-        var maTran = [[Int]]()
-        for index1 in 0 ..< 50 {
-            for index2 in 0 ..< 50 - index1 {
-                for index3 in 0 ..< 50 - index1 - index2 {
-                    for index4 in 0 ..< 50 - index1 - index2 - index3 {
-                        let index5 = 50 - index1 - index2 - index3 - index4
-                        maTran.append([index1, index2, index3, index4, index5])
-                    }
-                }
-            }
-        }
-        return maTran
-    }()
+    private var weightNumMatrix = [[Int]]()
 
     private var weightNums = Array(repeating: 0, count: 5)
 
     private let mainColor: UIColor
-    private let colorList: [UIColor]
+    private var colorList = [UIColor]()
 
     init(mainColor: ColorModel, colorListNew: [ColorModel]) {
         self.mainColor = UIColor(hex: mainColor.hexCode)
+        colorList = createColorList(colorListModel: colorListNew)
+        weightNumMatrix = createWeightNumsMatrix()
+    }
+
+    func createColorList(colorListModel: [ColorModel]) -> [UIColor] {
         var uiColorList = [UIColor]()
-        for colorItem in colorListNew {
+        for colorItem in colorListModel {
             uiColorList.append(UIColor(hex: colorItem.hexCode))
         }
-        self.colorList = uiColorList
+        return uiColorList
+    }
+
+    func createWeightNumsMatrix() -> [[Int]] {
+        let colorsCount = colorList.count
+
+        var matrix = [[Int]]()
+        for index1 in 0 ..< 20 {
+            let codition1 = index1 != 0
+            if colorsCount == 1 {
+                if codition1 {
+                    matrix.append([index1])
+                }
+            } else {
+                for index2 in 0 ..< 20 {
+                    let codition2 = codition1 && index2 != 0
+                    if colorsCount == 2 {
+                        if codition2 {
+                            matrix.append([index1, index2])
+                        }
+                    } else {
+                        for index3 in 0 ..< 20 {
+                            let codition3 = codition2 && index3 != 0
+                            if colorsCount == 3 {
+                                if codition3 {
+                                    matrix.append([index1, index2, index3])
+                                }
+                            } else {
+                                for index4 in 0 ..< 20 {
+                                    let codition4 = codition3 && index4 != 0
+                                    if colorsCount == 4 {
+                                        if codition4 {
+                                            matrix.append([index1, index2, index3, index4])
+                                        }
+                                    } else {
+                                        for index5 in 0 ..< 20 {
+                                            let codition5 = codition4 && index5 != 0
+                                            if colorsCount == 5 {
+                                                if codition5 {
+                                                    matrix.append([index1, index2, index3, index4, index5])
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return matrix
     }
 
     func getWeightNums() -> [Int]? {
@@ -59,7 +102,8 @@ class MixColors {
 
     private func canMixWithColors(mainColor: UIColor, colorList: [UIColor]) -> [Int]? {
         let chenhLechMau = tinhChenhLechMau(mainColor: mainColor, colorList: colorList)
-        for trongSo in maTranTrongSo {
+        for trongSo in weightNumMatrix {
+
             var avgRed = 0
             var avgGreen = 0
             var avgBlue = 0
@@ -70,9 +114,12 @@ class MixColors {
                 avgBlue += chenhLechMau[index].2 * trongSo[index]
             }
 
+            print(trongSo)
+            print("avg r b g: \(avgRed); \(avgBlue); \(avgGreen)")
+
             if canMixCodition(chenhLechMau: (avgRed, avgGreen, avgBlue)) {
                 let sumWeightNum = trongSo.reduce(0, +)
-                return trongSo.map { $0 / sumWeightNum * 100 }
+                return trongSo.map { Int(Float($0) / Float(sumWeightNum) * 100.0) }
             }
         }
         return nil

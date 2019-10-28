@@ -18,11 +18,11 @@ class ColorDetailViewController: UIViewController {
     @IBOutlet weak var hsvCodeLabel: UILabel!
     @IBOutlet weak var doThuongDung: UILabel!
 
-    var colorMoDel = ColorModel()
+    var mainColor = ColorModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI(colorModel: colorMoDel)
+        updateUI(colorModel: mainColor)
     }
 
     func updateIndexColor(index: Int) {

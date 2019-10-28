@@ -33,7 +33,11 @@ class ColorModel: NSObject, NSCopying {
     }
 
     convenience override init() {
-        self.init(newName: "new color", newHexCode: "005493")
+        self.init(newName: "New color", newHexCode: "005493")
+    }
+
+    func setDefaultColorName() {
+        name = "New color"
     }
 }
 
