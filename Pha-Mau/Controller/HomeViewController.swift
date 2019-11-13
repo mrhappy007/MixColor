@@ -168,6 +168,6 @@ extension HomeViewController: ColorPageViewControllerDelegate {
 extension HomeViewController: CustomCameraDelegate {
     func choosedColor(colorHexResult: String) {
         if colorHexResult.isEmpty { return }
-        updateReviewColorAndHexCode(newColorHexCode: colorHexResult)
+        updateUI(newColorHexCode: colorHexResult)
     }
 }

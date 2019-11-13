@@ -17,6 +17,8 @@ class CustomCameraViewController: UIViewController {
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var previewColorView: UIView!
     @IBOutlet weak var confirmColorButton: UIButton!
+    @IBOutlet weak var colorCodeReview: UILabel!
+
     weak var customCameraDelegate: CustomCameraDelegate?
 
     var currentHexColor = ""
@@ -119,6 +121,7 @@ extension CustomCameraViewController: AVCaptureVideoDataOutputSampleBufferDelega
                                                                 y: self.previewView.frame.height / 2))
             self.previewColorView.backgroundColor = color
             self.currentHexColor = color?.hex ?? ""
+            self.colorCodeReview.text = "#" + self.currentHexColor
             self.circleAroundColorPickUpPoint.strokeColor = color?.cgColor
         }
     }
