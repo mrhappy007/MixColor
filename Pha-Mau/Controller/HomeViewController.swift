@@ -1,173 +1,267 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  Pha-Mau
 //
-//  Created by Hieu Nghia on 3/21/19.
+//  Created by Hieu Nghia on 11/16/19.
 //  Copyright © 2019 Hieu Nghia. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController, UITextFieldDelegate {
+@available(iOS 13.0, *)
+class HomeViewController: UIViewController {
 
-    @IBOutlet weak var reviewColorView: UIView!
-    @IBOutlet weak var colorsSegmented: UISegmentedControl!
-    @IBOutlet weak var colorNameTextField: UITextField!
-    @IBOutlet weak var colorCodeTextfield: UITextField!
+    @IBOutlet weak var mauCanPhaDefaultView: UIView!
+
+    @IBOutlet weak var mauCanPhaResultView: UIView!
+
+    @IBOutlet weak var colorNameField: UITextField!
+
+    @IBOutlet weak var colorCodeField: UITextField!
+
+    @IBOutlet weak var colorReviewView: UIView!
+
+    @IBOutlet weak var materialColorListTableView: UITableView!
+
+    @IBAction func addOrEditMainColorPressed(_ sender: UIButton) {
+        guard let pickColorView = storyboard?.instantiateViewController(withIdentifier: "PickColorView") as? PickColorViewController else {
+            return
+        }
+        pickColorView.pickColorDelegate = self
+        pickColorView.isSetMainColor = true
+        pickColorView.mainColor = mainColor
+        self.navigationController?.pushViewController(pickColorView, animated: true)
+    }
+
+    @IBAction func addMaterialColorPressed(_ sender: UIButton) {
+        guard let pickColorView = storyboard?.instantiateViewController(withIdentifier: "PickColorView") as? PickColorViewController else {
+            return
+        }
+        pickColorView.pickColorDelegate = self
+        pickColorView.isSetMainColor = false
+        pickColorView.mainColor = mainColor
+        self.navigationController?.pushViewController(pickColorView, animated: true)
+    }
+
+    @IBAction func startMixColorPressed(_ sender: UIButton) {
+        if !canMixColor(selectedMainColor: setMainColorFlag, selectedMateralColor: !colorListMix.isEmpty) {
+            return
+        }
+
+        let mixColor = MixColors(mainColor: mainColor, colorListNew: colorListMix)
+        guard let weightNums = mixColor.mix() else {
+            noResultMixColor()
+            return
+        }
+        for index in 0..<colorListMix.count {
+            colorListMix[index].trongSo = weightNums[index]
+        }
+
+        guard let mixColorView = (storyboard?.instantiateViewController(withIdentifier: "MixColorView") as? MixColorResultViewController) else {
+            return
+        }
+        mixColorView.mainColor = mainColor
+        mixColorView.colorListMix = colorListMix.filter { $0.trongSo > 0 }
+        self.navigationController?.pushViewController(mixColorView, animated: true)
+    }
+
+    @IBAction func showHistoryMixColorPressed(_ sender: UIButton) {
+        guard let historyColorView = (storyboard?.instantiateViewController(withIdentifier: "HistoryColorView") as? HistoryColorViewController) else {
+            return
+        }
+        self.navigationController?.pushViewController(historyColorView, animated: true)
+    }
 
     var colorManager = ColorManager.context
 
     var mainColor = ColorModel()
+    var colorListMix = [ColorModel]()
+    var idColorListMix = [Int]()
+    var materialColorList = [ColorModel]()
 
-    var pageColorViewController: ColorPageViewController? {
-        didSet {
-            pageColorViewController?.pageColorDelegate = self
-        }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setDefaultName()
-    }
+    var setMainColorFlag = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         colorManager.loadContext()
-        pageColorViewController?.mainColorUpdate(color: UIColor(hex: mainColor.hexCode))
-        colorNameTextField.text = mainColor.name
-        updateUI(newColorHexCode: mainColor.hexCode)
+
+        materialColorListTableView.rowHeight = UITableView.automaticDimension
+        let colorCell = UINib(nibName: "ColorSummaryCell", bundle: nil)
+        materialColorListTableView.register(colorCell, forCellReuseIdentifier: "ColorSummaryCell")
     }
 
-    private func updateUI(newColorHexCode: String) {
-        mainColor.hexCode = newColorHexCode
-        reviewColorView.backgroundColor = UIColor(hex: newColorHexCode)
-        colorCodeTextfield.text = newColorHexCode
-        pageColorViewController?.mainColorUpdate(color: UIColor(hex: newColorHexCode))
-    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        materialColorListTableView.reloadData()
 
-    private func setDefaultName() {
-        mainColor.setDefaultColorName()
-        colorNameTextField.text = mainColor.name
-    }
+        updateMainColorView()
 
-    /*
-     Nếu dùng chung với updateUI
-     thì xuất hiện bug
- K(cmyk) = 1 c,m,y = 0
-     v(hsv) = 0 -> h,s = 0
-     */
-    private func updateReviewColorAndHexCode(newColorHexCode: String) {
-        mainColor.hexCode = newColorHexCode
-        reviewColorView.backgroundColor = UIColor(hex: newColorHexCode)
-        colorCodeTextfield.text = newColorHexCode
+        for color in colorListMix {
+            print("Check: \(color.idColor)")
+            print()
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let pageColorViewController = segue.destination as? ColorPageViewController {
-            self.pageColorViewController = pageColorViewController
+        guard let destination = segue.destination as? PickColorViewController else {
+            return
         }
+        destination.pickColorDelegate = self
+    }
 
-        if segue.identifier == "ChooseColorWithCamera" {
-            if let customCameraView = segue.destination as? CustomCameraViewController {
-                customCameraView.customCameraDelegate = self
+    func updateMainColorView() {
+        if setMainColorFlag {
+            mauCanPhaDefaultView.isHidden = true
+            colorReviewView.backgroundColor = UIColor(hex: mainColor.hexCode)
+            colorNameField.text = mainColor.name
+            colorCodeField.text = "#.\(mainColor.hexCode)"
+
+            if UIColor(hex: mainColor.hexCode).hsv.saturation < 0.3 {
+                colorNameField.textColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1)
+                colorCodeField.textColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1)
+            } else {
+                colorNameField.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                colorCodeField.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             }
         }
     }
 
-    @IBAction func colorNameDidChange(_ sender: UITextField) {
-        guard let colorName = sender.text else {
-            colorNameTextField.text = mainColor.name
-            return
-        }
-        if colorName.isEmpty {
-            colorNameTextField.text = mainColor.name
-            return
-        }
-        mainColor.name = colorName
+    func reloadMaterialColorTableView() {
+        materialColorListTableView.reloadData()
     }
 
-    @IBAction func maMauDidChange(_ sender: UITextField) {
-        guard let hexCode = sender.text else {
-            updateUI(newColorHexCode: mainColor.hexCode)
-            return
-        }
-
-        if hexCode.isEmpty {
-            updateUI(newColorHexCode: mainColor.hexCode)
-            return
-        }
-
-        let exception: UInt32 = 16_777_215 // 16_777_215 = ffffff
-
-        let canner = Scanner(string: hexCode)
-        var value: UInt32 = exception
-        canner.scanHexInt32(&value)
-
-        if value > exception {
-            updateUI(newColorHexCode: mainColor.hexCode)
-            return
-        }
-
-        updateUI(newColorHexCode: String(String("000000" + hexCode).dropFirst(hexCode.count)))
+    func showLimitMaterialColorAlert() {
+        showAlertDefault(
+            title: "Giới hạn màu",
+            message: "Ứng dụng chỉ hỗ trợ tính toán tỉ lệ tối đa 5 màu nguyên liệu."
+        )
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == colorCodeTextfield {
-            textField.resignFirstResponder()
-            return true
+    func canMixColor(selectedMainColor: Bool, selectedMateralColor: Bool) -> Bool {
+        var massager = ""
+        if !selectedMainColor {
+            if !selectedMateralColor {
+                massager = "Bạn cần chọn màu cần pha và màu nguyên liệu để tiếp tục"
+            } else {
+                massager = "Bạn cần chọn màu cần pha để tiếp tục"
+            }
+        } else {
+            if !selectedMateralColor {
+                massager = "Bạn cần chọn màu nguyên liệu để tiếp tục"
+            } else {
+                return true
+            }
         }
+
+        showAlertDefault(title: "Chọn màu", message: massager)
         return false
     }
 
-    @IBAction func switchColorSegmeted(_ sender: UISegmentedControl) {
-        switchColorView(index: sender.selectedSegmentIndex)
-        pageColorViewController?.whichToPage(index: sender.selectedSegmentIndex, updateColor: UIColor(hex: mainColor.hexCode))
+    func showAlertDefault(title: String, message: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
-    @IBAction func saveDidSelect(_ sender: UIBarButtonItem) {
-        colorNameDidChange(colorNameTextField)
-        maMauDidChange(colorCodeTextfield)
+    func noResultMixColor() {
+        let titleNoResult = "No result"
+        let messageNoResult = "Không thể pha màu từ những màu đã chọn, bạn hãy thử lại với những màu khác."
 
-        colorManager.appentColor(colorModel: mainColor.copy() as! ColorModel)
+        let alert = UIAlertController(title: titleNoResult, message: messageNoResult, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+}
 
+@available(iOS 13.0, *)
+extension HomeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return colorManager.colorListSize()
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ColorSummaryCell", for: indexPath) as?  ColorSummaryCell else {
+            return UITableViewCell(style: .default, reuseIdentifier: "Cell")
+        }
+
+        let colorModel = colorManager.colorList[indexPath.row]
+
+        if colorListMix.contains(colorModel) {
+            cell.updateContextChooseColor(colorModel: colorModel, switchIsOn: true)
+        } else {
+            cell.updateContextChooseColor(colorModel: colorModel)
+        }
+
+        cell.cellDelegate = self
+
+        return cell
+    }
+}
+
+@available(iOS 13.0, *)
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let colorDetailView = (storyboard?.instantiateViewController(withIdentifier: "ColorDetailView") as? ColorDetailViewController) else {
             return
         }
-        colorDetailView.mainColor = mainColor
+        colorDetailView.mainColor = colorManager.colorList[indexPath.item]
         self.navigationController?.pushViewController(colorDetailView, animated: true)
     }
 
-    @IBAction func mixColor(_ sender: UIButton) {
-        guard let chooseColorView = (storyboard?.instantiateViewController(withIdentifier: "ChooseColorsView") as? ChooseColorsViewController) else {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            colorManager.deleteColor(at: indexPath.item)
+        }
+        materialColorListTableView.reloadData()
+    }
+}
+
+@available(iOS 13.0, *)
+extension HomeViewController: ColorSummaryCellDelegate {
+    func switchDidChange(colorSummaryCell: UITableViewCell, colorId: String, colorSwitchStatus: Bool) {
+        let colorList = colorManager.colorList
+        guard let indexInColorList = colorList.firstIndex(where: { $0.idColor == colorId }) else {
             return
         }
-        chooseColorView.mainColor = mainColor
-        self.navigationController?.pushViewController(chooseColorView, animated: true)
-    }
+        print("search Color Id: \(colorId), \(colorManager.colorList[indexInColorList].idColor)")
+        switch colorSwitchStatus {
+        case true:
+            if colorListMix.count < 5 {
+                colorListMix.append(colorList[indexInColorList].copy() as! ColorModel)
+                break
+            }
+            guard let colorCell = colorSummaryCell as? ColorSummaryCell else {
+                break
+            }
 
-    private func switchColorView(index: Int) {
-        let images = [#imageLiteral(resourceName: "RGB"), #imageLiteral(resourceName: "CMYK"), #imageLiteral(resourceName: "HSV")]
-        let imagesBW = [#imageLiteral(resourceName: "RGBB&W"), #imageLiteral(resourceName: "CMYKB&W"), #imageLiteral(resourceName: "HSVB&W")]
-        for index in 0...2 {
-            colorsSegmented.setImage(imagesBW[index], forSegmentAt: index)
+            colorCell.setSwitchStatus(isOn: false)
+            showLimitMaterialColorAlert()
+
+        case false:
+            guard let indexInColorListForMixer = colorListMix.firstIndex(where: { $0.idColor == colorId }) else {
+                return
+            }
+            colorListMix.remove(at: indexInColorListForMixer)
         }
-        colorsSegmented.setImage(images[index], forSegmentAt: index)
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
     }
 }
 
-extension HomeViewController: ColorPageViewControllerDelegate {
-    func sliderAction(pageViewController: UIPageViewController, colorHexCode: String) {
-        updateReviewColorAndHexCode(newColorHexCode: colorHexCode)
-    }
-}
+@available(iOS 13.0, *)
+extension HomeViewController: PickColorViewDelegate {
+    func successfulEditting(isSetMainColor: Bool, maincolor: ColorModel) {
+        if isSetMainColor {
+            setMainColorFlag = true
+            self.mainColor = maincolor
+            updateMainColorView()
+            return
+        }
 
-extension HomeViewController: CustomCameraDelegate {
-    func choosedColor(colorHexResult: String) {
-        if colorHexResult.isEmpty { return }
-        updateUI(newColorHexCode: colorHexResult)
+        colorManager.appentColor(colorModel: maincolor.copy() as! ColorModel)
+        reloadMaterialColorTableView()
     }
 }

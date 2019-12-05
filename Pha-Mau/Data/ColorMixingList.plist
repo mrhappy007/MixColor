@@ -4,20 +4,25 @@
 <array>
 	<array>
 		<array>
+			<string>0001</string>
 			<string>Mau xanh</string>
 			<string>41AC6A</string>
+			<string>0</string>
 		</array>
 		<array>
+			<string>0011</string>
 			<string>Candy</string>
 			<string>00ffff</string>
 			<string>47</string>
 		</array>
 		<array>
+			<string>0012</string>
 			<string>Yellow</string>
 			<string>ffff00</string>
 			<string>29</string>
 		</array>
 		<array>
+			<string>0013</string>
 			<string>black</string>
 			<string>000000</string>
 			<string>37</string>

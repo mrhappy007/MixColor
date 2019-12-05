@@ -40,7 +40,7 @@ class ColorManager {
         }
     }
 
-    func appentColor(colorModel: ColorModel) {
+func appentColor(colorModel: ColorModel) {
         colorList.insert(colorModel, at: 0)
         updateUserDefault()
     }
@@ -49,6 +49,10 @@ class ColorManager {
         colorList.remove(at: index)
 
         updateUserDefault()
+    }
+
+    func colorListSize() -> Int {
+        return colorList.count
     }
 
     private func appendColor(elementArray element: [String]) {

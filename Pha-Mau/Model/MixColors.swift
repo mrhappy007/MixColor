@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class MixColors {
-    private let saiSo: CGFloat = 10
+    private let saiSo: CGFloat = 25
     private let itemsCountLimit = 5
     private let baseNumber = 10
     private var weightNumMatrix = [[Int]]()
@@ -84,7 +84,7 @@ class MixColors {
         return matrix
     }
 
-    func getWeightNums() -> [Int]? {
+    func mix() -> [Int]? {
         var weightNumsResult = Array(repeating: 0, count: colorList.count)
         if let canMixWithAColor = canMixWithAColor(mainColor: mainColor, colorList: colorList) {
             weightNumsResult[canMixWithAColor] = 100
@@ -110,7 +110,6 @@ class MixColors {
 
             let sumWeightNum = trongSo.reduce(0, +)
 
-            print("trongSo: \(trongSo)")
             for index in 0..<chenhLechMau.count {
                 avgRed += chenhLechMau[index].0 * trongSo[index]
                 avgGreen += chenhLechMau[index].1 * trongSo[index]
@@ -122,10 +121,8 @@ class MixColors {
             avgBlue /= sumWeightNum
 
             let checkMixColor = canMixCodition(chenhLechMau: (avgRed, avgGreen, avgBlue))
-            print(checkMixColor)
             if checkMixColor {
                 let sumWeightNum = trongSo.reduce(0, +)
-                print(sumWeightNum)
                 return trongSo.map { Int(Float($0) / Float(sumWeightNum) * 100.0) }
             }
         }
@@ -141,11 +138,6 @@ class MixColors {
     }
 
     private func canMixCodition(mainColor: UIColor, colorMix: UIColor) -> Bool {
-        print("saiso red: \(abs(mainColor.rgb.red - colorMix.rgb.red) * 255)")
-        print("sai so green: \(abs(mainColor.rgb.green - colorMix.rgb.green) * 255)")
-        print("sai so ble: \(abs(mainColor.rgb.blue - colorMix.rgb.blue) * 255)")
-        print()
-
         return (abs(mainColor.rgb.red - colorMix.rgb.red) * 255 <= self.saiSo &&
             abs(mainColor.rgb.green - colorMix.rgb.green) * 255 <= self.saiSo &&
             abs(mainColor.rgb.blue - colorMix.rgb.blue) * 255 <= self.saiSo)
@@ -153,9 +145,6 @@ class MixColors {
 
     private func canMixCodition(chenhLechMau: (avgRed: Int, avgGreen: Int, avgBlue: Int)) -> Bool {
         let saiSoInt = Int(self.saiSo)
-        print("Chenh lech mau red: \(abs(chenhLechMau.avgRed))")
-        print("Chenh lech mau G: \(abs(chenhLechMau.avgGreen))")
-        print("Chenh lech mau B: \(abs(chenhLechMau.avgBlue))")
         return abs(chenhLechMau.avgRed) <= saiSoInt
             && abs(chenhLechMau.avgGreen) <= saiSoInt
             && abs(chenhLechMau.avgBlue) <= saiSoInt

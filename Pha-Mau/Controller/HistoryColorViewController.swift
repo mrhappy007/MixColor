@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ColorListViewController: UIViewController {
+class HistoryColorViewController: UIViewController {
 
     @IBOutlet weak var colorListTableView: UITableView!
 
-    var collorManager = ColorManager.context
+    var historyColorManage = HistoryColorManager.context
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,33 +29,35 @@ class ColorListViewController: UIViewController {
     }
 }
 
-extension ColorListViewController: UITableViewDataSource {
+extension HistoryColorViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return collorManager.colorList.count
+        return historyColorManage.colorListSize()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ColorSummaryCell", for: indexPath) as?  ColorSummaryCell else {
             return UITableViewCell(style: .default, reuseIdentifier: "Cell")
         }
-        let colorModel = collorManager.colorList[indexPath.item]
+        let colorModel = historyColorManage.mainColor(at: indexPath.item)
         cell.updateContextSummary(colorModel: colorModel)
         return cell
     }
 }
 
-extension ColorListViewController: UITableViewDelegate {
+extension HistoryColorViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let colorDetailView = (storyboard?.instantiateViewController(withIdentifier: "ColorDetailView") as? ColorDetailViewController) else {
+        guard let mixColorView = (storyboard?.instantiateViewController(withIdentifier: "MixColorView") as? MixColorResultViewController) else {
             return
         }
-        colorDetailView.mainColor = collorManager.colorList[indexPath.item]
-        self.navigationController?.pushViewController(colorDetailView, animated: true)
+        mixColorView.mainColor = historyColorManage.mainColor(at: indexPath.row)
+        mixColorView.colorListMix = historyColorManage.colorListMix(index: indexPath.row)
+        mixColorView.isReviewMixColor = true
+        self.navigationController?.pushViewController(mixColorView, animated: true)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            ColorManager.context.deleteColor(at: indexPath.item)
+            historyColorManage.deleteColor(at: indexPath.item)
         }
         colorListTableView.reloadData()
     }

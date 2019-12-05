@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 @IBDesignable
 class CustomView: UIView {
 
@@ -25,6 +26,28 @@ class CustomView: UIView {
                 self.layer.shouldRasterize = true
                 self.layer.rasterizationScale = UIScreen.main.scale
             }
+        }
+    }
+
+    @IBInspectable
+    var cornerRadius: CGFloat = 0 {
+        didSet (newValue) {
+            self.layer.cornerRadius = cornerRadius
+        }
+    }
+
+    @IBInspectable
+    var borderColor: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) {
+        didSet (newValue) {
+            self.layer.borderColor = borderColor.cgColor
+        }
+    }
+
+    @IBInspectable
+    var borderWidth: CGFloat = 0 {
+        didSet (newValue) {
+            self.layer.borderWidth = borderWidth
+            self.layer.masksToBounds = true
         }
     }
 }

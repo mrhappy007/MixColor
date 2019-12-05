@@ -11,15 +11,21 @@ import Foundation
 class ColorModel: NSObject, NSCopying {
 
     func copy(with zone: NSZone? = nil) -> Any {
-        let colorModel = ColorModel(newID: self.idColor, newName: self.name, newHexCode: self.hexCode)
+        let colorModel = ColorModel(
+                            newID: self.idColor,
+                            newName: self.name,
+                            newHexCode: self.hexCode,
+                            newTrongSo: self.trongSo
+                        )
         return colorModel
     }
 
     var name: String
     var hexCode: String
     var idColor: String
+    var trongSo: Int
 
-    init(newID: String = "", newName: String = "", newHexCode: String) {
+    init(newID: String = "", newName: String = "", newHexCode: String, newTrongSo: Int = 0) {
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyMMddHHmmss"
@@ -35,6 +41,8 @@ class ColorModel: NSObject, NSCopying {
         if newID.isEmpty {
             idColor = formatter.string(from: date)
         }
+
+        trongSo = newTrongSo
     }
 
     convenience override init() {

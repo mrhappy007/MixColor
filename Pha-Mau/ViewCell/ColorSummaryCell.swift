@@ -14,6 +14,7 @@ protocol ColorSummaryCellDelegate: class {
 
 class ColorSummaryCell: UITableViewCell {
 
+    @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var reviewColor: UIView!
     @IBOutlet weak var colorName: UILabel!
     @IBOutlet weak var colorCode: UILabel!
@@ -28,13 +29,28 @@ class ColorSummaryCell: UITableViewCell {
         super.awakeFromNib()
     }
 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        let myViewBackgroundColor = cellView.backgroundColor
+        super.setSelected(false, animated: false)
+        cellView.backgroundColor = myViewBackgroundColor
+    }
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(false, animated: false)
+    }
+
     @IBAction func switchDidChange(_ sender: UISwitch) {
     cellDelegate?.switchDidChange(colorSummaryCell: self, colorId: colorId, colorSwitchStatus: switchColor.isOn)
     }
 
     func updateContextSummary(colorModel: ColorModel) {
-        reviewColor.backgroundColor = UIColor(hex: colorModel.hexCode)
-        reviewColor.tintColor = UIColor(hex: colorModel.hexCode)
+        let reviewUiColor = UIColor(hex: colorModel.hexCode)
+        reviewColor.backgroundColor = reviewUiColor
+        reviewColor.tintColor = reviewUiColor
+        if reviewUiColor.hsv.saturation < 0.3 {
+            reviewColor.layer.borderWidth = 0.5
+            reviewColor.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        }
         colorName.text = colorModel.name
         colorCode.text = "#" + colorModel.hexCode
         colorId = colorModel.idColor
@@ -50,10 +66,10 @@ class ColorSummaryCell: UITableViewCell {
         switchColor.isOn = isOn
     }
 
-    func updateContextMixColor(colorModel: ColorModel, tiLe: Int = 0) {
+    func updateContextMixColor(colorModel: ColorModel) {
         updateContextSummary(colorModel: colorModel)
         tiLeLabel.isHidden = false
         tiLeValueLabel.isHidden = false
-        tiLeValueLabel.text = "\(tiLe) %"
+        tiLeValueLabel.text = "\(colorModel.trongSo) %"
     }
 }
