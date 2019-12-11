@@ -61,6 +61,7 @@ func appentColor(colorModel: ColorModel) {
     }
 
     private func createNewUserDefault() {
+        print("new cm")
         let userDefaults = UserDefaults.standard
         guard let path = Bundle.main.path(forResource: userDefaultKey, ofType: "plist") else {
             return

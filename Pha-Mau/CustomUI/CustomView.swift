@@ -13,11 +13,11 @@ import UIKit
 class CustomView: UIView {
 
     @IBInspectable
-    var shadow: Bool = true {
+    var shadow: Bool = false {
         didSet (newValue) {
             shadow = newValue
             if shadow {
-                self.layer.masksToBounds = false
+//                self.layer.masksToBounds = false
                 self.layer.shadowColor = UIColor.darkGray.cgColor
                 self.layer.shadowOpacity = 0.5
                 self.layer.shadowOffset = CGSize(width: 0, height: 0.1)
@@ -33,6 +33,7 @@ class CustomView: UIView {
     var cornerRadius: CGFloat = 0 {
         didSet (newValue) {
             self.layer.cornerRadius = cornerRadius
+            self.layer.masksToBounds = true
         }
     }
 
@@ -46,8 +47,10 @@ class CustomView: UIView {
     @IBInspectable
     var borderWidth: CGFloat = 0 {
         didSet (newValue) {
-            self.layer.borderWidth = borderWidth
-            self.layer.masksToBounds = true
+            if borderWidth > 0 {
+                self.layer.borderWidth = borderWidth
+                self.layer.masksToBounds = true
+            }
         }
     }
 }

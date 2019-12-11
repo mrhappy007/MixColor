@@ -20,7 +20,7 @@ class MixColorResultViewController: UIViewController {
             navigationController?.popViewController(animated: true)
             return
         }
-        historyColorManager.appentColor(mainColor: mainColor, colorListMix: colorListMix)
+        historyColorManager.appentColor(mainColor: mainColor.copy() as! ColorModel, colorListMix: colorListMix)
         navigationController?.popToRootViewController(animated: true)
     }
 

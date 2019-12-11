@@ -23,7 +23,7 @@ class ColorSummaryCell: UITableViewCell {
     @IBOutlet weak var tiLeValueLabel: UILabel!
 
     weak var cellDelegate: ColorSummaryCellDelegate?
-    var colorId = "19000101000000"
+    var colorId = "000000"
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,6 +11,14 @@ import UIKit
 @available(iOS 13.0, *)
 class HomeViewController: UIViewController {
 
+    var colorManager = ColorManager.context
+
+    var mainColor = ColorModel()
+    var colorIdListMix = [String]()
+    var materialColorList = [ColorModel]()
+
+    var setMainColorFlag = false
+
     @IBOutlet weak var mauCanPhaDefaultView: UIView!
 
     @IBOutlet weak var mauCanPhaResultView: UIView!
@@ -22,6 +30,22 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var colorReviewView: UIView!
 
     @IBOutlet weak var materialColorListTableView: UITableView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        colorManager.loadContext()
+
+        materialColorListTableView.rowHeight = UITableView.automaticDimension
+        let colorCell = UINib(nibName: "ColorSummaryCell", bundle: nil)
+        materialColorListTableView.register(colorCell, forCellReuseIdentifier: "ColorSummaryCell")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        materialColorListTableView.reloadData()
+
+        updateMainColorView()
+    }
 
     @IBAction func addOrEditMainColorPressed(_ sender: UIButton) {
         guard let pickColorView = storyboard?.instantiateViewController(withIdentifier: "PickColorView") as? PickColorViewController else {
@@ -44,11 +68,17 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func startMixColorPressed(_ sender: UIButton) {
-        if !canMixColor(selectedMainColor: setMainColorFlag, selectedMateralColor: !colorListMix.isEmpty) {
+
+        if !canMixColor(selectedMainColor: setMainColorFlag, selectedMateralColor: !colorIdListMix.isEmpty) {
             return
         }
+        var colorListMix = [ColorModel]()
+        let colorListMixtemp = colorManager.colorList.filter({ colorIdListMix.contains($0.idColor) })
+        for color in colorListMixtemp {
+            colorListMix.append(color.copy() as! ColorModel)
+        }
 
-        let mixColor = MixColors(mainColor: mainColor, colorListNew: colorListMix)
+        let mixColor = MixColors(mainColor: mainColor.copy() as! ColorModel, colorListNew: colorListMix)
         guard let weightNums = mixColor.mix() else {
             noResultMixColor()
             return
@@ -70,36 +100,6 @@ class HomeViewController: UIViewController {
             return
         }
         self.navigationController?.pushViewController(historyColorView, animated: true)
-    }
-
-    var colorManager = ColorManager.context
-
-    var mainColor = ColorModel()
-    var colorListMix = [ColorModel]()
-    var idColorListMix = [Int]()
-    var materialColorList = [ColorModel]()
-
-    var setMainColorFlag = false
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        colorManager.loadContext()
-
-        materialColorListTableView.rowHeight = UITableView.automaticDimension
-        let colorCell = UINib(nibName: "ColorSummaryCell", bundle: nil)
-        materialColorListTableView.register(colorCell, forCellReuseIdentifier: "ColorSummaryCell")
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        materialColorListTableView.reloadData()
-
-        updateMainColorView()
-
-        for color in colorListMix {
-            print("Check: \(color.idColor)")
-            print()
-        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -191,7 +191,7 @@ extension HomeViewController: UITableViewDataSource {
 
         let colorModel = colorManager.colorList[indexPath.row]
 
-        if colorListMix.contains(colorModel) {
+        if colorIdListMix.contains(colorModel.idColor) {
             cell.updateContextChooseColor(colorModel: colorModel, switchIsOn: true)
         } else {
             cell.updateContextChooseColor(colorModel: colorModel)
@@ -224,15 +224,10 @@ extension HomeViewController: UITableViewDelegate {
 @available(iOS 13.0, *)
 extension HomeViewController: ColorSummaryCellDelegate {
     func switchDidChange(colorSummaryCell: UITableViewCell, colorId: String, colorSwitchStatus: Bool) {
-        let colorList = colorManager.colorList
-        guard let indexInColorList = colorList.firstIndex(where: { $0.idColor == colorId }) else {
-            return
-        }
-        print("search Color Id: \(colorId), \(colorManager.colorList[indexInColorList].idColor)")
         switch colorSwitchStatus {
         case true:
-            if colorListMix.count < 5 {
-                colorListMix.append(colorList[indexInColorList].copy() as! ColorModel)
+            if colorIdListMix.count < 5 {
+                colorIdListMix.append(colorId)
                 break
             }
             guard let colorCell = colorSummaryCell as? ColorSummaryCell else {
@@ -243,10 +238,10 @@ extension HomeViewController: ColorSummaryCellDelegate {
             showLimitMaterialColorAlert()
 
         case false:
-            guard let indexInColorListForMixer = colorListMix.firstIndex(where: { $0.idColor == colorId }) else {
+            guard let indexInColorListForMixer = colorIdListMix.firstIndex(where: { $0 == colorId }) else {
                 return
             }
-            colorListMix.remove(at: indexInColorListForMixer)
+            colorIdListMix.remove(at: indexInColorListForMixer)
         }
     }
 }

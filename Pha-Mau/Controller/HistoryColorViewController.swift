@@ -16,6 +16,7 @@ class HistoryColorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        historyColorManage.loadContext()
 
         colorListTableView.rowHeight = UITableView.automaticDimension
 
@@ -38,7 +39,7 @@ extension HistoryColorViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ColorSummaryCell", for: indexPath) as?  ColorSummaryCell else {
             return UITableViewCell(style: .default, reuseIdentifier: "Cell")
         }
-        let colorModel = historyColorManage.mainColor(at: indexPath.item)
+        let colorModel = historyColorManage.mainColor(at: indexPath.row)
         cell.updateContextSummary(colorModel: colorModel)
         return cell
     }
@@ -57,7 +58,7 @@ extension HistoryColorViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            historyColorManage.deleteColor(at: indexPath.item)
+            historyColorManage.deleteColor(at: indexPath.row)
         }
         colorListTableView.reloadData()
     }

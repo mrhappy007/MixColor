@@ -56,7 +56,3 @@ class ColorModel: NSObject, NSCopying {
         name = formatter.string(from: date)
     }
 }
-
-func == (lhs: ColorModel, rhs: ColorModel) -> Bool {
-    return lhs.idColor == rhs.idColor
-}
